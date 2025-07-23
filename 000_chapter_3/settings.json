@@ -1,0 +1,140 @@
+{
+    // Тема оформления интерфейса редактора
+    "workbench.colorTheme": "Andromeda Bordered",
+    // Редактор, который будет открыт при старте (в данном случае, ни один)
+    // "workbench.startupEditor": "none",
+    // Настройки цветов границы в статус-баре и панели
+    "workbench.colorCustomizations": {
+        "statusBar.border": "#fdfdfd",
+        "panel.border": "#ffffff91",
+        // "editor.background": "#000000ff",
+    },
+    // Центральная панель команд
+    "window.commandCenter": false,
+    // Насыщенность (толщина) шрифта в редакторе кода
+    "editor.fontWeight": 200,
+    // Шрифт редактора
+    "editor.fontFamily": "JetBrains Mono",
+    // Включение лигатур (!= — ≠, >= — ≥ и т.д.)
+    // "editor.fontLigatures": true,
+    // Размер шрифта в редакторе
+    "editor.fontSize": 14,
+    // Интервал между символами в редакторе
+    "editor.letterSpacing": 0.3,
+    // Отключение мини-карты (minimap)
+    "editor.minimap.enabled": false,
+    // Задержка перед отображением всплывающих подсказок при наведении курсора
+    "editor.hover.delay": 2000,
+    // Отображение глифов (для точек останова) в линейке слева от редактора
+    "editor.glyphMargin": false,
+    // отключение ссылок в коде
+    "editor.codeLens": false,
+    // Настройки цветов для различных типов синтаксических элементов в коде
+    // "editor.tokenColorCustomizations": {
+    // "textMateRules": [
+    // {
+    // "scope": [
+    // "variable",
+    // "variable.other",
+    // "variable.parameter",
+    // ],
+    // "settings": {
+    // "foreground": "#f0f0f0" // Цвет переменных
+    // }
+    // },
+    // {
+    // "scope": [
+    // "variable.other.class"
+    // ],
+    // "settings": {
+    // "foreground": "#ff00ff" // Цвет переменных внутри класса (фиолетовый)
+    // }
+    // },
+    // {
+    // "scope": [
+    // "string"
+    // ],
+    // "settings": {
+    // "foreground": "#ffffff" // Цвет строк кода
+    // }
+    // },
+    // {
+    // "scope": [
+    // "support.type.primitive",
+    // "keyword",
+    // "support.type.cs",
+    // "support.type.javascript",
+    // ],
+    // "settings": {
+    // "foreground": "#f05c5f" // Цвет типов данных
+    // }
+    // }
+    // ]
+    // },
+    // Автоматическое форматирование при сохранении файла
+    "editor.formatOnSave": true,
+    // Настройки форматирования кода на языке C# при вводе
+    "[csharp]": {
+        "editor.formatOnType": true
+    },
+    // отключение ссылок при сравнении
+    "diffEditor.codeLens": true,
+    //
+    // Исключение указанных папок из просмотра в редакторе
+    "files.exclude": {
+        "**/bin": true,
+        "**/obj": true
+    },
+    // Шрифт редактора
+    "terminal.integrated.fontFamily": "JetBrains Mono",
+    // Размер шрифта во встроенном терминале
+    "terminal.integrated.fontSize": 20,
+    // Насыщенность (толщина) шрифта в терминале
+    "terminal.integrated.fontWeight": 200,
+    // Автоматическое сохранение файлов при изменении фокуса
+    "files.autoSave": "onFocusChange",
+    // "files.autoSave": "afterDelay", // настройка для автосохранения
+    // "files.autoSaveDelay": 500, // задержка перед автосохранением
+    // Устанавливает тему значков для файлов в боковой панели ресурсов.
+    // В данном случае, используется тема значков "material-icon-theme".
+    "workbench.iconTheme": "material-icon-theme",
+    // Задает предпочтительный язык для расширения vscodeGoogleTranslate.
+    // В данном случае, предпочтительным языком указан "English" (английский).
+    "vscodeGoogleTranslate.preferredLanguage": "English",
+    // Указывает языки для проверки орфографии с использованием расширения Code Spell Checker (cSpell).
+    // В данном случае, указаны английский (en) и русский (ru) языки, включая региональный вариант русского (ru-RU).
+    "cSpell.language": "en,ru,ru-RU",
+    // Задает список путей, которые будут игнорироваться при проверке орфографии cSpell.
+    // В данном примере, игнорируются определенные файлы и директории, такие как "package-lock.json", "node_modules" и др.
+    "cSpell.ignorePaths": [
+        "package-lock.json",
+        "node_modules",
+        "vscode-extension",
+        ".git/objects",
+        ".vscode",
+        ".vscode-insiders",
+    ],
+    // Устанавливает символы, которые считаются разделителями слов при навигации по словам в текстовом редакторе.
+    "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?",
+    // Задает ширину курсора в редакторе кода.
+    "editor.cursorWidth": 3,
+    // Включает плавную анимацию курсора в редакторе кода.
+    "editor.cursorSmoothCaretAnimation": "on",
+    // Включает плавный скролл в боковой панели ресурсов.
+    "workbench.list.smoothScrolling": true,
+    // Задает тип мигания курсора. В данном случае, используется "expand", что означает расширение и сжатие курсора во время мигания.
+    "editor.cursorBlinking": "expand",
+    // Включает возможность изменения масштаба текста с помощью колеса мыши.
+    "editor.mouseWheelZoom": true,
+    // Задает высоту строки в редакторе кода.
+    "editor.lineHeight": 1.7,
+    // Позволяет добавить пользовательские слова, которые не будут считаться ошибками при проверке орфографии cSpell.
+    "cSpell.userWords": [
+        "Zhimailo"
+    ],
+    // хлебные крошки
+    "breadcrumbs.enabled": false,
+    "workbench.settings.applyToAllProfiles": [
+        "editor.fontFamily"
+    ]
+}
