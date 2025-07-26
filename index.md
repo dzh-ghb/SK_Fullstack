@@ -2,5 +2,6 @@
 ### *<u>DZHITS:</u>*
 - [Мой канал с заметками по курсу](https://t.me/DZHITS)  
 - [Мой GitHub](https://github.com/dzh-ghb)  
-# 
+<hr>
+
 > *Лучшее - враг хорошего*
