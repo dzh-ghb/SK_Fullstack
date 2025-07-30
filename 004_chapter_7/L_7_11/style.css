@@ -1,0 +1,29 @@
+h1,
+h2 {
+    font-style: italic;
+}
+
+h2[id="red"] {
+    color: red;
+}
+
+h2[id="blue"] {
+    color: blue;
+}
+
+h2[id="orange"] {
+    color: orange;
+}
+
+h2[id="brown"] {
+    color: brown;
+}
+
+h2[id="darkblue"] {
+    color: darkblue;
+}
+
+img {
+    height: 50px;
+    width: 150px;
+}
