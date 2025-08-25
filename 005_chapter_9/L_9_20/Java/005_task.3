@@ -1,0 +1,54 @@
+//package L_9_20;
+//
+//public class T_3 {
+//    public static void main(String[] args) {
+//        //        #9
+//        System.out.println("input n");
+//        int n = new Scanner(System.in).nextInt();
+//        int[] arr = new int[n];
+//        int pos = 0;
+//        int[] resultArr = new int[n];
+//        int reversedResPos = resultArr.length - 1;
+//        while (pos < arr.length) {
+//            System.out.println("input el_" + (pos + 1) + " (size = " + arr.length + ")");
+//            arr[pos] = new Scanner(System.in).nextInt();
+//            resultArr[reversedResPos--] = arr[pos++];
+//        }
+//
+//        Arrays.stream(resultArr).forEach(each -> System.out.print(each + " "));
+//
+//          //        #10
+//        System.out.println("input n");
+//        int n = new Scanner(System.in).nextInt();
+//        int[] arr = new int[n];
+//        int pos = 0;
+//        int[] reverseArr = new int[n];
+//        int reversedResPos = reverseArr.length - 1;
+//        boolean result = false;
+//        while (pos < arr.length) {
+//            System.out.println("input el_" + (pos + 1) + " (size = " + arr.length + ")");
+//            arr[pos] = new Scanner(System.in).nextInt();
+//            reverseArr[reversedResPos--] = arr[pos++];
+//        }
+//        for (int i = 0; i < arr.length; i++) {
+//            if (arr[i] == reverseArr[i]) result = true;
+//            else {
+//                result = false;
+//                break;
+//            }
+//        }
+//        System.out.println(result);
+//
+//          //        #11
+//        System.out.println("input n");
+//        int n = new Scanner(System.in).nextInt();
+//        int[] arr = new int[n];
+//        int pos = 0;
+//        while (pos < arr.length) {
+//            System.out.println("input el_" + (pos + 1) + " (size = " + arr.length + ")");
+//            arr[pos++] = new Scanner(System.in).nextInt();
+//        }
+//
+//        Arrays.stream(arr).sorted().forEach(each -> System.out.print(each + " "));
+//    }
+//}

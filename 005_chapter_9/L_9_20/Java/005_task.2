@@ -1,0 +1,63 @@
+//package L_9_20;
+//
+//import java.util.Arrays;
+//import java.util.Scanner;
+//
+//public class T_2 {
+//    public static void main(String[] args) {
+//        //        #5
+//        System.out.println("input n");
+//        int n = new Scanner(System.in).nextInt();
+//        int[] arr = new int[n];
+//        int pos = 0, avg = 0;
+//        while (pos < arr.length) {
+//            System.out.println("input el_" + (pos + 1) + " (size = " + arr.length + ")");
+//            arr[pos] = new Scanner(System.in).nextInt();
+//            avg += arr[pos++];
+//        }
+//        System.out.println((float) avg / arr.length);
+//
+//        //        #6
+//        System.out.println("input n");
+//        int n = new Scanner(System.in).nextInt();
+//        int[] arr = new int[n];
+//        int pos = 0, max;
+//        while (pos < arr.length) {
+//            System.out.println("input el_" + (pos + 1) + " (size = " + arr.length + ")");
+//            arr[pos++] = new Scanner(System.in).nextInt();
+//        }
+//        max = Arrays.stream(arr).max().getAsInt();
+//        System.out.println(max);
+//    }
+//
+//        //        #7
+//        System.out.println("input n");
+//        int n = new Scanner(System.in).nextInt();
+//        int[] arr = new int[n];
+//        int pos = 0, min;
+//        while (pos < arr.length) {
+//            System.out.println("input el_" + (pos + 1) + " (size = " + arr.length + ")");
+//            arr[pos++] = new Scanner(System.in).nextInt();
+//        }
+//        min = Arrays.stream(arr).min().getAsInt();
+//        System.out.println(min);
+//
+//        //        #8
+//        System.out.println("input n");
+//        int n = new Scanner(System.in).nextInt();
+//        int[] arr = new int[n];
+//        int pos = 0, current, previous;
+//        int[] result = new int[n - 1];
+//        while (pos < arr.length) {
+//            System.out.println("input el_" + (pos + 1) + " (size = " + arr.length + ")");
+//            arr[pos] = new Scanner(System.in).nextInt();
+//            if (pos > 0) {
+//                previous = arr[pos - 1];
+//                current = arr[pos];
+//                result[pos - 1] = previous + current;
+//            }
+//            pos++;
+//        }
+//        Arrays.stream(result).forEach(each -> System.out.print(each + " "));
+//    }
+//}
