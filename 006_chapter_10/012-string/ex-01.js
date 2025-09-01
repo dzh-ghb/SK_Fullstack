@@ -7,46 +7,59 @@ let str3 = `Это шаблонная строка`;
 let str = "JavaScript";
 //         0123456789
 console.log(str[0]); // Выведет "J"
-console.log(str.charAt(1)); // То же, что и str[1]; выведет "a"
+console.log(str.charAt(1)); // То же, что и str[1]; выведет "a" - метод
 
 // Длина строки
-console.log(str.length); // Выведет 10
+console.log("\n");
+console.log(str.length); // Выведет 10 - свойство
 
 // Сложение строк
-str1 = "Hello, ";
+str1 = "Hello";
 str2 = "world!";
-let result = str1 + str2;
+let result = str1 + " " + str2;
+console.log("\n");
 console.log(result); // Выведет "Hello, world!"
 
 // Методы преобразования
 str = "JavaScript";
 str.toUpperCase();
+console.log("\n");
 console.log(str.toUpperCase()); // Выведет "JAVASCRIPT"
 console.log(str.toLowerCase()); // Выведет "javascript"
+console.log("Исходная строка не меняется - " + str); // Выведет "javascript"
 
 // Поиск подстроки
 str = "JavaScript";
-console.log(str.indexOf("Script")); // Выведет 4
-console.log(str.lastIndexOf("a")); // Выведет 3
-console.log(str.includes("Java")); // Вернет true
+console.log("\n");
+console.log(str.indexOf("Script")); // Выведет 4 - поиск первого вхождения подстроки/символа
+console.log(str.indexOf("Scrist")); // Выведет 4
+console.log(str.lastIndexOf("a")); // Выведет 3 - поиск с конца
+console.log(str.includes("Java")); // Вернет true - есть ли подстрока
 
 // Обрезка строки
 str = "JavaScript";
-console.log(str.substring(0, 4)); // Выведет "Java"
-console.log(str.slice(-6)); // Выведет "Script"
+console.log("\n");
+console.log(str.substring(0, 4)); // Выведет "Java", второе число не включается | может быть один аргумент - начальная позиция и до конца
+console.log(str.slice(-6)); // Выведет "Script" - счет справа, начиная с 1
 console.log(str.slice(4)); // Выведет "Script"
-// console.log(str.substr(4, 6)); // Выведет "Script"
+//console.log(str.substr(4, 6)); // Выведет "Script" - не рекомендуется, устаревший метод
 
 // trimStart, trim, trimEnd
 str = "   Hello, world!   ";
+console.log("\n");
 console.log(str.trimStart()); // "Hello, world!   "
 console.log(str.trimEnd());   // "   Hello, world!"
 console.log(str.trim());      // "Hello, world!"
 
 // split
 str = "JavaScript is awesome";
+console.log("\n");
+console.log(str);
 console.log(str.split(" ")); // ["JavaScript", "is", "awesome"]
 
 // replace
-str = "JavaScript";
+str = "JavaScriptJava";
+console.log("\n");
+console.log(str);
 console.log(str.replace("Java", "Type")); // "TypeScript"
+console.log(str.replace("Java", "Type").replace("Java", "Type"));
