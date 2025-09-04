@@ -9,6 +9,15 @@ let str = "hello world!";
 //     console.log(`>${element}<`);
 // }
 
-for (const e of str) {
-    console.log(`[${e}]`);
+// перебор значений?
+for (let e of str) { //через let НЕ РЕКОМЕНДУЕТСЯ
+    e = "abc";
+    console.log(`>${e}<`);
+}
+
+// перебор индексов/позиций?
+console.log("\n");
+for (let e in str) { //через let НЕ РЕКОМЕНДУЕТСЯ
+    e = 0;
+    console.log(`<${str[e]}>`);
 }

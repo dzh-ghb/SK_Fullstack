@@ -60,6 +60,6 @@ console.log(multiLine);
 let symbol = `\u{1F60A}`; // Смайлик
 console.log(symbol); // Выведет 😊
 
-multiLine = 'Это\nмн\'огострочная\nстрока';
+multiLine = 'Это\nмн\'ого\tстрочная\nстрока';
 
 console.log(multiLine);

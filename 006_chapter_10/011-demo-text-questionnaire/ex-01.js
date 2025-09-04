@@ -10,7 +10,7 @@ if (answer === "30") {
 }
 
 question = "'Деп' или не `деп`? [да, нет]";
-answer = prompt(question);
+answer = prompt(question).toLowerCase();
 if (answer === "нет" || answer === "no") {
     score += 10;
     alert("Верное решение 👍");
