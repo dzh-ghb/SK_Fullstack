@@ -1,19 +1,6 @@
 function getRandom(maxNum) {
     return Math.round(Math.random() * maxNum);
 }
-let a1 = getRandom(1_000_000);
-let a2 = getRandom(1_000_000);
-let a3 = getRandom(1_000_000);
-
-let a4 = getRandom(1_000_000);
-let a5 = getRandom(1_000_000);
-let a6 = getRandom(1_000_000);
-
-let a7 = getRandom(1_000_000);
-let a8 = getRandom(1_000_000);
-let a9 = getRandom(1_000_000);
-
-console.log()
 
 function getMax(n1, n2, n3) {
     let max;
@@ -26,6 +13,18 @@ function getMax(n1, n2, n3) {
     }
     return max;
 }
+
+let a1 = getRandom(1_000_000);
+let a2 = getRandom(1_000_000);
+let a3 = getRandom(1_000_000);
+
+let a4 = getRandom(1_000_000);
+let a5 = getRandom(1_000_000);
+let a6 = getRandom(1_000_000);
+
+let a7 = getRandom(1_000_000);
+let a8 = getRandom(1_000_000);
+let a9 = getRandom(1_000_000);
 
 let max1 = getMax(a1, a2, a3);
 let max2 = getMax(a4, a5, a6);

@@ -7,7 +7,7 @@ function printHello() {
 // Ничего не возвращают
 // Принимают аргументы
 function printHello(nickname) {
-    console.log(`Привет ,${nickname}!`);
+    console.log("\n" + `Привет ,${nickname}!`);
 }
 
 // Возвращают результат
@@ -26,22 +26,20 @@ function getHelloTextForUser(nickname) {
 function greet(username) {
     console.log(`Привет, ${username}!`);
 }
-
 greet("Аля"); // Выведет "Привет, Аля!"
 
 // Пример функции с возвращаемым значением
-// function add(a, b) {
-//     return a + b;
-// }
-
-// let result = add(3, 5); // result равен 8
+function add1(a, b) {
+    return a + b;
+}
+console.log("\n");
+console.log(add1(14, 5));
 
 // Пример использования переменных внутри функции
 function sayHello(username) {
     let message = `Привет, ${username}!`;
-    console.log(message);
+    console.log("\n" + message);
 }
-
 sayHello("Иван"); // Выведет "Привет, Иван!"
 
 // ***
@@ -50,7 +48,7 @@ function outerFunction() {
     let outerVariable = "Я снаружи!";
 
     function innerFunction() {
-        console.log(outerVariable);
+        console.log("\n" + outerVariable);
     }
 
     return innerFunction;
@@ -68,6 +66,7 @@ function applyOperation(x, y, operation) {
 //     return x + y;
 // }
 
+// стрелочные функции
 const add = (x, y) => x + y;
 const div = (x, y) => x / y;
 
@@ -81,9 +80,8 @@ const multiply = function (a, b) {
 let result2 = multiply(4, 6); // result2 равен 24
 
 const sayHi = function (firstName) {
-    console.log(`Привет, ${firstName}!`);
+    console.log("\n" + `Привет, ${firstName}!`);
 };
-
 sayHi("Юля"); // Выведет "Привет, Юля!"
 
 // Пример стрелочной функции
@@ -102,6 +100,6 @@ sayHi("Юля"); // Выведет "Привет, Юля!"
 
 const assistantMin = (num1, num2) => num1 < num2 ? num1 : num2;
 
-
-let res = assistantMin(14, 21);
+let res = assistantMin(52, 21);
+console.log("\n");
 console.log(res);
