@@ -1,0 +1,13 @@
+{
+    "id": 123456,
+    "name": "Smartphone",
+    "brand": "Samsung",
+    "model": "Galaxy S20",
+    "price": 799.99,
+    "features": {
+        "processor": "Exynos",
+        "ram": "8 GB",
+        "storage": "128 GB",
+        "battery": "4000 mAh"
+    }
+}
