@@ -1,4 +1,5 @@
 // def-subtract.js
-export default function (x, y) {
+// экспорт по умолчанию (в рамках одного файла только один экспорт по умолчанию)
+export default function (x, y) { // имя функции в данном виде экспорта необязательно
     return x - y;
 }

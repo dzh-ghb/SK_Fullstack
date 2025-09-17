@@ -1,14 +1,16 @@
 {
-  "name": "028-multiple-files-project",
-  "version": "1.0.0",
+  "name": "026-create-project",
+  "version": "1.1.0",
   "description": "",
-  "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "DZHITS_NDBT",
-  "license": "ISC"
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
 }
