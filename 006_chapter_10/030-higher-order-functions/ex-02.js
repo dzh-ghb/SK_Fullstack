@@ -10,6 +10,7 @@ function repeat(times, action) {
 
 // Использование функции высших порядков
 repeat(3, console.log); // Выведет 0, 1, 2 в консоль
+console.log("\n");
 
 // Пример 2: Функция, возвращающая другую функцию
 function multiplier(factor) {
@@ -20,6 +21,7 @@ function multiplier(factor) {
 
 let twice = multiplier(2); // Создание функции, которая удваивает значение
 console.log(twice(5)); // Выведет 10
+console.log("\n");
 
 // Пример 3: Использование функций высших порядков с массивами
 const numbers = [1, 2, 3, 4, 5];
@@ -29,16 +31,19 @@ const doubled = numbers.map(function (number) {
     return number * 2; // Удваиваем каждое число
 });
 console.log(doubled); // Выведет [2, 4, 6, 8, 10]
+console.log("\n");
 
 // Функция filter также принимает функцию и использует её для выбора элементов массива
 const evens = numbers.filter(function (number) {
     return number % 2 === 0; // Оставляем только четные числа
 });
 console.log(evens); // Выведет [2, 4]
+console.log("\n");
 
 // Пример 4: Функции высших порядков в современном JavaScript с использованием стрелочных функций
 const tripled = numbers.map(number => number * 3); // Утраиваем каждое число
 console.log(tripled); // Выведет [3, 6, 9, 12, 15]
+console.log("\n");
 
 const greaterThanThree = numbers.filter(number => number > 3); // Оставляем числа больше 3
 console.log(greaterThanThree); // Выведет [4, 5]

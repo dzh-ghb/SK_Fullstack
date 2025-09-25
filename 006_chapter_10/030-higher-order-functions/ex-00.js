@@ -24,10 +24,8 @@ const result5 = getItems(numbers, e => e > 0);
 // console.log(result4);
 // console.log(result5);
 
-
 const resFilter = numbers.filter(e => e % 2 === 0);
 console.log(resFilter);
-
 
 function select(items, logic) {
     const result = [];

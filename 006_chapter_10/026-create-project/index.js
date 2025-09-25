@@ -6,6 +6,6 @@ let userName = readlineSync.question('May I have your name?\nInput name: ');
 console.log('Hi ' + userName + '!');
 
 // let userName = readlineSync.question('May I have your name?\nInput name: ', {
-//     hideEchoBack: true // блюр вводимого текста *
+//     hideEchoBack: true // блюр вводимого текста символами "*"
 // });
 // console.log('Hi ' + userName + '!');
