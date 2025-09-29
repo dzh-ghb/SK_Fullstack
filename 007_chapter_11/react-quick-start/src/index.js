@@ -3,8 +3,26 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const firstName = "d";
+const lastName = "zh";
+const val = `100%`;
+const arr = [19, 20, 28];
+const currentYear = new Date().getFullYear();
+
 root.render(
-  <h1>DZHITS_NDBT</h1>
+  // div>h1{DZHITS}+ul>li*5>{NDBT} // без пробелов!
+  <div>
+    <h1>DZHITS</h1>
+    <h2>NDBT</h2>
+    <h3>{firstName} {lastName}</h3>
+    <ul>
+      <li>{val}</li>
+      <li>{arr[0]}</li>
+      <li>{arr[1]}</li>
+      <li>{arr[2]}</li>
+    </ul>
+    <p>&copy; {currentYear}</p>
+  </div>
 );
 
 // сверху то же самое через React - проще, удобнее, компактнее
