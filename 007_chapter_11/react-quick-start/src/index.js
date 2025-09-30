@@ -14,16 +14,17 @@ const currentYear = new Date().getFullYear();
 root.render(
   // div>h1{DZHITS}+ul>li*5>{NDBT} // без пробелов!
   <div>
-    <h1>DZHITS</h1>
-    <h2>NDBT</h2>
-    <h3>{firstName} {lastName}</h3>
+    <h1 style={{ color: 'green', fontSize: `20px` }}>DZHITS</h1>
+    {/* <h1 className="h1-style">DZHITS</h1> */}
+    <h2 className="h1-style">NDBT</h2>
+    <h3 className='h2-style'>{firstName} {lastName}</h3>
     <ul>
       {
         // arr.map(item => (<li>{item}</li>)) // работа с массивом
         // Array.from({ length: 10 }, (_, index) => // если val не используем - заменяем на "_"
         //   <li>{`Элемент ${index + 1}`}</li>)
         Array.from({ length: 10 }, (_, index) =>
-          <li>{`Элемент ${getRandom() % 2 === 0 ? 'EVEN' : 'ODD'}`}</li>)
+          <li key={index}>{`Элемент ${getRandom() % 2 === 0 ? 'EVEN' : 'ODD'}`}</li>)
       }
     </ul>
     {/* {<ul>
