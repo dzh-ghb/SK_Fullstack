@@ -2,41 +2,27 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 
-const getRandom = () => Math.round(Math.random() * 10);
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const firstName = "d";
-const lastName = "zh";
-// const val = `100%`;
-const arr = [19, 20, 28];
+
+const val1 = 'DZHITS';
+const val2 = 'NDBT';
 const currentYear = new Date().getFullYear();
 
 root.render(
-  // div>h1{DZHITS}+ul>li*5>{NDBT} // без пробелов!
-  <div>
-    <h1 style={{ color: 'green', fontSize: `20px` }}>DZHITS</h1>
-    {/* <h1 className="h1-style">DZHITS</h1> */}
-    <h2 className="h1-style">NDBT</h2>
-    <h3 className='h2-style'>{firstName} {lastName}</h3>
-    <ul>
-      {
-        // arr.map(item => (<li>{item}</li>)) // работа с массивом
-        // Array.from({ length: 10 }, (_, index) => // если val не используем - заменяем на "_"
-        //   <li>{`Элемент ${index + 1}`}</li>)
-        Array.from({ length: 10 }, (_, index) =>
-          <li key={index}>{`Элемент ${getRandom() % 2 === 0 ? 'EVEN' : 'ODD'}`}</li>)
-      }
-    </ul>
-    {/* {<ul>
-      <li>{val}</li>
-      <li>{arr[0]}</li>
-    </ul>} */}
-    <p>&copy; {currentYear}</p>
+  <div className='container col-10'>
+    <h1 className="m-3" style={{ color: 'green', fontSize: `25px` }}>{val1}</h1>
+    <h2 className="h1-style m-3">{val2}</h2>
+
+    {/* фигурные скобки нужны, так как это JS-вкрапление */}
+    {Array.from({ length: 5 }, (_, index) =>
+      <div className="card m-3" style={{ width: `18rem` }}>
+        <img src={`https://cataas.com/cat?width=${320 + index}`} className="card-img-top" alt="..." />
+        <div className="card-body">
+          <h5 className="card-title">Card title</h5>
+          <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+        </div>
+      </div>)}
+
+    <p className="m-3">&copy; {currentYear}</p>
   </div>
 );
-
-// сверху то же самое через React - проще, удобнее, компактнее
-// const h1Element = document.createElement("h1");
-// h1Element.innerText = 'DZHITS_NDBT';
-// const root = document.getElementById('root');
-// root.appendChild(h1Element);
