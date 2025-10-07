@@ -1,11 +1,9 @@
 import React from 'react';
 
-const currentYear = new Date().getFullYear();
-
-const FooterItem = () => {
+const FooterItem = (props) => {
     return (
         <div>
-            <p className='m-3'>&copy; {currentYear}</p>
+            <p className='m-3'>&copy; {props.datePart}</p>
         </div>
     )
 }
