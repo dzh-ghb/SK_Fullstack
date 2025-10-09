@@ -2,9 +2,11 @@ import React from 'react'; // начиная с 18-й версии, импорт
 import ReactDOM from 'react-dom/client';
 import './css/index.css';
 import HomePage from './layout/HomePage/HomePage';
+import MyComponent from './layout/Hooks/MyComponent';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <HomePage />
+  // <HomePage />
+  <MyComponent />
 );
