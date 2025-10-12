@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import HeaderItem from './components/HeaderItem';
 import ContentItem from './components/ContentItem';
 import FooterItem from './components/FooterItem';
+
+// url для запроса к FakeAPI
+const baseUrl = "https://jsonplaceholder.typicode.com/posts";
 
 // конструктор
 const HomePage = () => {
@@ -20,6 +24,12 @@ const HomePage = () => {
     const imgAlt = "_NDBT";
 
     const datePart = new Date().getFullYear();
+
+    // GET-запрос и вывод результата в консоль
+    useEffect(() => {
+        axios.get(baseUrl)
+            .then(res => console.log(res));
+    })
 
     return (
         <div className="container col-8">

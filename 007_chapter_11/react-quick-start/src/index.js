@@ -7,6 +7,6 @@ import MyComponent from './layout/Hooks/MyComponent';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  // <HomePage />
-  <MyComponent />
+  <HomePage />
+  // <MyComponent />
 );
