@@ -11,15 +11,12 @@ const baseUrl = "https://jsonplaceholder.typicode.com/posts";
 const HomePage = () => {
     const headerTitle = "_DZHITS";
 
-    const labels = [ // массив объектов
-        { id: 1, cardTitle: "Header #1", cardText: "Description #1" },
-        { id: 2, cardTitle: "Header #2", cardText: "Description #2" },
-        { id: 3, cardTitle: "Header #3", cardText: "Description #3" },
-        { id: 4, cardTitle: "Header #4", cardText: "Description #4" },
-        { id: 5, cardTitle: "Header #5", cardText: "Description #5" },
-        { id: 6, cardTitle: "Header #6", cardText: "Description #6" },
-        { id: 7, cardTitle: "Header #7", cardText: "Description #7" },
-    ];
+    const [labels, setLabels] = useState(
+        [
+            // { id: 1, cardTitle: "Header #1", cardText: "Description #1" },
+        ]
+    );
+
     const imgSrc = "https://cataas.com/cat?width=";
     const imgAlt = "_NDBT";
 
@@ -39,6 +36,12 @@ const HomePage = () => {
                 imgSrc={imgSrc}
                 imgAlt={imgAlt}
             />
+            <button className="btn btn-primary m-3"
+                onClick={() => {
+                    setLabels([...labels,
+                    { id: 1, cardTitle: "New Header #1", cardText: "New Description #1" },
+                    ])
+                }}>Add element</button>
             <FooterItem datePart={datePart} />
         </div>
     )
