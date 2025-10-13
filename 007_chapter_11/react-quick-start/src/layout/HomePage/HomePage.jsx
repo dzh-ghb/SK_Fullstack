@@ -25,22 +25,24 @@ const HomePage = () => {
     // GET-запрос и вывод результата в консоль
     useEffect(() => {
         axios.get(baseUrl) // запрос к сервису
-            // .then(res => console.log(res));
-            // .then(res => console.log(res.data.slice(0, 5)));
             .then(res => { // обработка полученных данных, в res - ответ от сервиса
-                const temp = [];
-                res.data.slice(0, 5).forEach( // работа со свойством data со всеми объектами
-                    item => { // перебор каждого объекта
-                        temp.push({ // заполнение временного объекта нужной модели данных (структуры)
-                            id: item.id,
-                            cardTitle: item.title.slice(0, 10),
-                            cardText: item.body.slice(0, 50)
-                        });
-                    }
-                );
+                const temp = res.data.slice(0, 5).map(item => ({ // работа со свойством data со всеми объектами
+                    id: item.id,
+                    cardTitle: item.title.slice(0, 20),
+                    cardText: item.body.slice(0, 50)
+                }));
+                console.log(temp);
                 setLabels(temp); // изменение исходного массива данных labels
             });
-    })
+    }, []);
+
+    // Вариант автора - для работы нужно изменить названия в ContentItem
+    // useEffect(() => {
+    //     axios.get(baseUrl)
+    //         .then(res => {
+    //             setLabels(res.data.slice(0, 5));
+    //         });
+    // }, []);
 
     return (
         <div className="container col-8">
