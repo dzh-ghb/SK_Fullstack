@@ -1,0 +1,28 @@
+﻿// Пример использования Dictionary<TKey, TValue>
+
+Console.WriteLine("\nDictionary<TKey, TValue> пример:");
+// Dictionary<string, int> ages = new Dictionary<string, int>()
+// Dictionary<string, int> ages = new()
+//     {
+//         { "Alice", 30 },
+//         { "Bob", 25 }
+//     };
+Dictionary<string, int> ages = new();
+ages.Add("Alice", 30);
+ages.Add("Bob", 25);
+
+
+// Добавление новой пары ключ-значение
+ages["Charlie"] = 28;
+ages.Remove("Bob");
+// foreach (KeyValuePair<string, int> pair in ages)
+foreach (var pair in ages)
+{
+    Console.WriteLine($"Имя: {pair.Key}, Возраст: {pair.Value}");
+}
+
+// foreach (var item in ages.Keys)
+foreach (var item in ages.Values)
+{
+    Console.WriteLine(item);
+}

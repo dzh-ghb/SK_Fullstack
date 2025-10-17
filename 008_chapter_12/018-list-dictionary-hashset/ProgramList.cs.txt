@@ -1,0 +1,18 @@
+﻿List<int> list = new();
+List<string> list2 = new();
+List<double> list3 = new();
+
+// List<List<List<double>>> list3 = new();
+
+list.Add(1);
+list.Add(2);
+list.Add(3);
+list.Add(2);
+Console.WriteLine(String.Join(", ", list));
+
+list.RemoveAt(0); // 2, 3, 2
+list.Remove(2); // 3, 2
+list[0] = 123; // 123, 2
+
+Console.WriteLine(String.Join(", ", list));
+
