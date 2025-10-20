@@ -8,7 +8,8 @@ Console.WriteLine("Наименьшее число из 5 и 10: " + Math.Min(5,
 // Примеры округления чисел
 Console.WriteLine("Округление до ближайшего большего целого (2.3): " + Math.Ceiling(2.3));
 Console.WriteLine("Округление до ближайшего меньшего целого (2.7): " + Math.Floor(2.7));
-Console.WriteLine("Округление до ближайшего целого (2.5): " + Math.Round(2.5));
+Console.WriteLine("Округление до ближайшего четного - по дефолту (2.5): " + Math.Round(2.5));
+Console.WriteLine("Округление до ближайшего целого (2.5): " + Math.Round(2.5, MidpointRounding.AwayFromZero));
 
 // Примеры тригонометрических функций
 double angle = Math.PI / 4; // 45 градусов в радианах
@@ -22,7 +23,7 @@ Console.WriteLine("Натуральный логарифм числа e: " + Mat
 Console.WriteLine("Десятичный логарифм числа 100: " + Math.Log10(100));
 
 // Примеры степенных функций
-Console.WriteLine("2 в степени 3: " + Math.Pow(8, 1.0 / 3));
+Console.WriteLine("2 в степени 1 / 3 (аналог кубического корня из восьми): " + Math.Pow(8, 1.0 / 3));
 Console.WriteLine("Квадратный корень из 16: " + Math.Sqrt(16));
 
 // Вывод констант
