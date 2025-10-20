@@ -8,21 +8,26 @@ Console.WriteLine("Неявное преобразование int в double: " 
 double anotherDouble = 123.456; // 8 байт
 // Явное преобразование из double в int
 int anotherInt = (int)anotherDouble; // 4 байта
-Console.WriteLine("Явное преобразование double в int: " + anotherInt);
+Console.WriteLine("Явное преобразование double в int с потерей дробной части: " + anotherInt);
 
-// Преобразование с использованием класса Convert
+// Преобразование из одного типа в другой с использованием класса Convert
 string intString = "123";
 int fromStringToInt = Convert.ToInt32(intString); // Преобразует строку в int
 Console.WriteLine("Преобразование строки в int с использованием Convert: " + fromStringToInt);
 
+// Другой пример
+int ins = 123;
+byte by = Convert.ToByte(ins);
+Console.WriteLine("Каст из Int32 в Byte: " + ins + " (" + ins.GetType() + ") | " + by + " (" + by.GetType() + ")");
+
 // Преобразование с использованием метода Parse
-string doubleString = "123.456";
+string doubleString = "123,456";
 // Преобразует строку в double
 double fromStringToDouble = double.Parse(doubleString);
 Console.WriteLine("Преобразование строки в double с использованием Parse: " + fromStringToDouble);
 
 // Преобразование с использованием метода TryParse
-string invalidIntString = "123";
+string invalidIntString = "123,0";
 int parseResult;
 // Пытается преобразовать строку в int
 bool isSuccess = int.TryParse(invalidIntString, out parseResult);
