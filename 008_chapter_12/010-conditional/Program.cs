@@ -35,10 +35,10 @@ switch (month)
         Console.WriteLine("Январь");
         break;
     case 2:
-        Console.WriteLine("Январь");
+        Console.WriteLine("Февраль");
         break;
     case 3:
-        Console.WriteLine("Январь");
+        Console.WriteLine("Март");
         break;
     // Дополнительные case можно добавлять по аналогии
     default:
@@ -49,8 +49,9 @@ switch (month)
 // Пример использования тернарного условного оператора
 int anotherNumber = 7;
 string result = "";
-if (anotherNumber < 10) { result = "Меньше 10"; }
-else { result = "10 или больше"; }
+
+// if (anotherNumber < 10) { result = "Меньше 10"; }
+// else { result = "10 или больше"; }
 
 result = anotherNumber < 10 ? "Меньше 10" : "10 или больше";
 Console.WriteLine(result);
@@ -94,12 +95,14 @@ var dayType = day switch
     _ => "Будний день"
 };
 
-if (day == DayOfWeek.Saturday || day == DayOfWeek.Sunday)
-{
-    dayType = "Выходной";
-}
-else
-{
-    dayType = "Будний день";
-}
+// if (day == DayOfWeek.Saturday || day == DayOfWeek.Sunday)
+// {
+//     dayType = "Выходной";
+// }
+// else
+// {
+//     dayType = "Будний день";
+// }
+
+dayType = (day == DayOfWeek.Saturday || day == DayOfWeek.Sunday) ? "Выходной" : "Будний день";
 Console.WriteLine(dayType);
