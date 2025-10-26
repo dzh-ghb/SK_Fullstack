@@ -30,7 +30,7 @@ StringBuilder sb = new();
 sb.Append("Hello, ");
 sb.Append("world!");
 sb.Append(123);
-sb[1] = '!';
+sb[1] = '!'; // мутабельный тип - обычные строки изменять нельзя
 string greeting5 = sb.ToString();
 // Выведет: Hello, world!
 Console.WriteLine(greeting5);
