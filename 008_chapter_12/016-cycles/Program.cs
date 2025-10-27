@@ -25,7 +25,7 @@ do
 
 // Пример использования break для прерывания цикла
 Console.WriteLine("\nПример использования break:");
-for (int i = 0; i < 5; i++)
+for (int i = 0; i < 10; i++)
 {
     if (i == 5)
         break; // Выход из цикла, когда i равно 5
@@ -49,7 +49,7 @@ foreach (char symbol in names)
     Console.WriteLine(symbol);
 }
 
-for (double i = 0, j = 10; i > j; i += 2.5, j--)
+for (double i = 0, j = 10; i < 10 && j > 0; i += 2.5, j++)
 {
     Console.WriteLine($"{i}, {j}");
 }
