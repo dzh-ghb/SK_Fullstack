@@ -1,5 +1,5 @@
 ﻿// (int x, int y, string name, int[] values) pair = (1, 2, "str", new[] { 1, 2, 3 });
-// var pair = (1, 2, "str", new[] { 1, 2, 3 });
+//// var pair = (1, 2, "str", new[] { 1, 2, 3 });
 // Console.WriteLine(pair.Item1);
 // Console.WriteLine(pair.x);
 // Console.WriteLine(pair.y);
@@ -13,6 +13,7 @@
 
 // Использование кортежей
 var myTuple = (1, "hello", true);
+// Console.WriteLine(myTuple);
 Console.WriteLine($"Кортеж - число: {myTuple.Item1}, строка: {myTuple.Item2}, булево: {myTuple.Item3}");
 
 // Деконструкция кортежа
@@ -39,4 +40,3 @@ Console.WriteLine($"Клонирование и модификация record - 
 
 // Определение record
 public record Person(string FirstName, string LastName);
-

@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TuplesRecord", "TuplesRecord.csproj", "{1A4B24BE-9AE1-D65D-DC3A-F5B8133E191F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A4B24BE-9AE1-D65D-DC3A-F5B8133E191F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A4B24BE-9AE1-D65D-DC3A-F5B8133E191F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A4B24BE-9AE1-D65D-DC3A-F5B8133E191F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A4B24BE-9AE1-D65D-DC3A-F5B8133E191F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {69C4A41D-670C-4627-B75A-D2830FFFB74F}
+	EndGlobalSection
+EndGlobal
