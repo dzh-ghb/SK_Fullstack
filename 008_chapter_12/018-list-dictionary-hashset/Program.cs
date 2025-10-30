@@ -1,6 +1,4 @@
-﻿
-// =====
-// Пример использования HashSet<T>
+﻿// Пример использования HashSet<T>
 Console.WriteLine("\nHashSet<T> пример:");
 HashSet<int> numbers = new HashSet<int>() { 1, 2, 3, 4, 5 };
 // Добавление элемента (уникальные значения)

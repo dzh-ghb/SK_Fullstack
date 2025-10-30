@@ -1,7 +1,8 @@
 ﻿List<int> list = new();
-List<string> list2 = new();
+List<string> list2 = new List<string>();
 List<double> list3 = new();
 
+// аналог трехмерного объекта - на практике применимо с малой вероятностью
 // List<List<List<double>>> list3 = new();
 
 list.Add(1);
@@ -10,9 +11,9 @@ list.Add(3);
 list.Add(2);
 Console.WriteLine(String.Join(", ", list));
 
-list.RemoveAt(0); // 2, 3, 2
-list.Remove(2); // 3, 2
-list[0] = 123; // 123, 2
+list.RemoveAt(0); // 2, 3, 2 // удаление по индексу
+list.Remove(2); // 3, 2 // удаление первого включения
+list[0] = 123; // 123, 2 // обращение только к индексу, в котором лежит значение
 
 Console.WriteLine(String.Join(", ", list));
 
