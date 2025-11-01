@@ -1,79 +1,44 @@
-﻿// # ТЗ
-// Метод, который создает новый массив
-// int[] CreateArray(int count)
-// Метод, который заполняет массив случайными числами
-// int[] FillArray(int count)
-// int[] FillArray(int[] emptyArray)
-// Метод, который выводит массив на экран
-// Print(int[] array)
-// Метод, который ищет только четные числа
-// int[] FindEven(int[] numbers)
+using System.Runtime.CompilerServices;
+using System.Text;
 
-// Метод, который создает новый массив
-// int[] CreateArray(int count)
-int[] CreateArray(int count)
+int[] GetArr(int length)
 {
-    return new int[count];
+    return new int[length];
 }
 
-// Метод, который заполняет массив случайными числами
-int[] FillArray1(int count)
+void FillingArr(int[] arr)
 {
-    int[] array = new int[count];
-    for (int i = 0; i < count; i++)
+    for (int i = 0; i < arr.Length; i++)
     {
-        array[i] = Random.Shared.Next(10);
+        arr[i] = Random.Shared.Next(150);
     }
-    return array;
 }
-int[] FillArray2(int[] emptyArray)
+
+string getArrElements(int[] arr)
 {
-    int count = emptyArray.Length;
-    int[] array = new int[count];
-    for (int i = 0; i < count; i++)
+    StringBuilder mutableStr = new();
+    for (int i = 0; i < arr.Length; i++)
     {
-        array[i] = Random.Shared.Next(10);
+        mutableStr.Append($"el_{i + 1} - {arr[i]}\n");
     }
-    return array;
+    return mutableStr.ToString();
 }
 
-// Метод, который выводит массив на экран
-// ???
-void PrintBad(int[] array)
+int GetSum(int[] arr)
 {
-    int count = array.Length;
-    for (int i = 0; i < count; i++)
+    int sum = 0;
+    for (int i = 0; i < arr.Length; i++)
     {
-        Console.Write($"{array[i]} ");
+        sum += (arr[i] >= 9 && arr[i] < 100) ? arr[i] : 0;
+        // Console.WriteLine($"el_{i + 1} - {arr[i]}");
     }
-    Console.WriteLine();
+    return sum;
 }
 
-string Join(int[] array)
-{
-    string result = String.Empty; // ""
-    int count = array.Length;
-    for (int i = 0; i < count; i++)
-    {
-        result += $"{array[i]} ";
-    }
-    return result;
-}
+Console.Write("Введите длину массива: ");
+int length = int.Parse(Console.ReadLine());
+int[] arr = GetArr(length: length); // именованный аргумент
+FillingArr(arr);
 
-// Метод, который ищет только четные числа
-int[] FindEven(int[] numbers)
-{
-
-}
-
-// int[] ints = CreateArray(12);
-int[] ints = FillArray1(12);
-// PrintBad(ints);
-string output = Join(ints);
-// Console.WriteLine(output);
-File.WriteAllText("output_ints.txt", output);
-int[] evenNumbers = FindEven(ints);
-// PrintBad(evenNumbers);
-output = Join(evenNumbers);
-// Console.WriteLine(output);
-File.WriteAllText("output_evenNumbers.txt", output);
+Console.WriteLine(getArrElements(arr));
+Console.Write($"Сумма двухзначных элементов: {GetSum(arr)}");
