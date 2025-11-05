@@ -1,104 +1,52 @@
-﻿// using System.IO;
+﻿using System.Text;
+// using System.IO;
 
-// string data = "";
+// Запись в файл (простейший вариант)
+// string data = "DZHITS_NDBT";
+// File.WriteAllText("filename.txt", data);
 
-// for (int i = 0; i < 1000; i++)
+// Запись в Excel-файл (~псевдо база данных)
+// StringBuilder data1 = new StringBuilder();
+// for (int i = 0; i < 50; i++)
 // {
-//     data += $"Имя_{i};Фамилия_{i};Город_{Random.Shared.Next(1, 10)}; +7 999 123 ** **;\n";
+//     data1.Append($"Фамилия_{i};Имя_{i};Город_{Random.Shared.Next(1, 10)}; +7 999 123 ** **;\n");
 // }
 
-// File.WriteAllText("filename.csv", data);
+// File.WriteAllText("filename.csv", data1.ToString());
 
-
-// string[] dataRead = File.ReadAllText("filename.csv")
-//                         .Split('\n');
-
-// string[] personInfo = dataRead[0].Split(';');
-// foreach (var item in personInfo)
+// Чтение данных из файла
+// string dataRead = File.ReadAllText("filename.csv");
+// // Console.WriteLine(dataRead);
+// List<string> dataReadList = new(dataRead.Split("\n"));
+// List<string> surnamesList = new();
+// foreach (string each in dataReadList)
 // {
-//     Console.WriteLine(item);
-// };
-// Console.WriteLine(dataRead[0]);
+//     Console.WriteLine(each);
+//     surnamesList.Add(each.Split(";")[0]);
+// }
+// Console.WriteLine($"{dataReadList[29]}\n");
 
-
-// string[] dataRead = File.ReadAllText("filename.csv")
-//                         .Split('\n');
-
-// for (int i = 0; i < dataRead.Length; i++)
+// foreach (string each in surnamesList)
 // {
-//     string[] personInfo = dataRead[i].Split(';');
-//     // Console.WriteLine(personInfo[0]);
-//     File.AppendAllText("names.csv", personInfo[0] + '\n');
+//     Console.WriteLine(each);
+//     File.AppendAllText("surnames.csv", $"{each}\n");
 // }
 
-// Environment.NewLine // \n 
-// \n\r
+// Чтение данных из файла #2
+string dataRead = File.ReadAllText("filename.csv");
+List<string> dataReadList = new(dataRead.Split("\n"));
+List<List<string>> dataList = new();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-return;
-// Создание и запись в файл
-string filePath = "example.txt";
-File.WriteAllText(filePath, "Привет, мир!");
-Console.WriteLine("Файл создан и в него записан текст.");
-
-// Чтение из файла
-string content = File.ReadAllText(filePath);
-Console.WriteLine("Содержимое файла:");
-Console.WriteLine(content);
-
-// Построчная запись и чтение с использованием StreamWriter и StreamReader
-using (StreamWriter writer = new StreamWriter(filePath, true))
+foreach (string each in dataReadList)
 {
-    writer.WriteLine("Строка 1");
-    writer.WriteLine("Строка 2");
+    dataList.Add(new(each.Split(";")));
 }
-Console.WriteLine("В файл дописаны строки.");
 
-using (StreamReader reader = new StreamReader(filePath))
+foreach (List<string> eachList in dataList)
 {
-    string line;
-    Console.WriteLine("Чтение файла построчно:");
-    while ((line = reader.ReadLine()) != null)
+    foreach (string each in eachList)
     {
-        Console.WriteLine(line);
+        Console.WriteLine(each);
+        File.AppendAllText("recordsList.csv", $"{each}\n");
     }
-}
-
-// Работа с путями
-string fullPath = Path.Combine(Environment.CurrentDirectory, filePath);
-Console.WriteLine($"Полный путь к файлу: {fullPath}");
-Console.WriteLine($"Расширение файла: {Path.GetExtension(fullPath)}");
-
-// Создание каталога и перемещение файла в него
-string directoryPath = Path.Combine(Environment.CurrentDirectory, "TestDirectory");
-Directory.CreateDirectory(directoryPath);
-Console.WriteLine("Каталог создан.");
-
-string movedFilePath = Path.Combine(directoryPath, filePath);
-if (!File.Exists(movedFilePath))
-{
-    File.Move(filePath, movedFilePath);
-    Console.WriteLine("Файл перемещен в новый каталог.");
 }
