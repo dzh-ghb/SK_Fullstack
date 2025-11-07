@@ -2,11 +2,11 @@
 
 try
 {
-    Console.WriteLine(array[2]);
+    Console.WriteLine(array[12]);
 }
-catch
+catch (Exception ex)
 {
-    Console.WriteLine("Какая-то ошибка ");
+    Console.WriteLine($"Какая-то ошибка ({ex.GetType().Name})");
 }
 finally
 {

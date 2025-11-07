@@ -1,112 +1,73 @@
-﻿
-// MyMethodDelegate method = IsEven;
-
-// var r = method(1);
-// Console.WriteLine(r);
-
-
-// Написать метод, который будет принимать массив
-// и метод проверки этих чисел
-// возвращать новый массив чисел
-// с учетом логики проверки
-
-// bool IsEven(int x)
+﻿// bool IsEven(int x)
 // {
 //     return x % 2 == 0;
 // }
+
 // bool Check(int x)
 // {
 //     return x % 5 == 0 && x % 2 == 0;
 // }
 
-int[] CheckArray(int[] numbers, Func<int, bool> logic)
+// Пример №1
+// MyDelegate method = IsEven;
+// var r = method(3);
+// Console.WriteLine(r);
+
+// Пример №2
+// Метод, принимающий массив чисел
+// и метод проверки этих чисел,
+// возвращать новый массив чисел
+// с учетом логики проверки;
+// метод принимает в аргументы метод
+// int[] CheckArr(int[] nums, MyDelegate logic)
+int[] CheckArr(int[] nums, Func<int, bool> logic)
 {
-    int count = numbers.Length;
+    int count = nums.Length;
     int countEven = 0;
 
     for (int i = 0; i < count; i++)
     {
-        if (logic(numbers[i])) countEven++;
+        if (logic(nums[i])) countEven++;
     }
 
-    int[] evenNumbers = new int[countEven];
+    int[] evenNums = new int[countEven];
     int pos = 0;
+
     for (int i = 0; i < count; i++)
     {
-        if (logic(numbers[i]))
+        if (logic(nums[i]))
         {
-            evenNumbers[pos] = numbers[i];
+            evenNums[pos] = nums[i];
             pos++;
         }
     }
-    return evenNumbers;
+    return evenNums;
 }
 
-// int[] ints = CheckArray(new int[] { 1, 21, 3, 40, 5 }, delegate (int x)
-// {
-//     return x % 5 == 0 && x % 2 == 0;
-// });
-// int[] ints = CheckArray(new int[] { 1, 21, 3, 40, 5 }, delegate (int x)
-// {
-//     return x % 2 == 0;
-// });
+// №1 - передача метода
+// int[] ints = CheckArr(new int[] { 1, 2, 3, 4, 5 }, Check); // CheckArr будет переваривать массив с учетом логики обычного метода в параметрах
 
-// int[] ints = CheckArray(new int[] { 1, 21, 3, 40, 5 }, (int x) =>
-// {
-//     return x % 2 == 0;
-// });
+// №2 - передача анонимного метода
+// int[] ints = CheckArr(new int[] { 1, 2, 3, 4, 5 }, delegate (int x)
+//  {
+//      return x % 5 == 0 && x % 2 == 0;
+//  }); // CheckArr будет переваривать массив с учетом логики анонимного метода
 
-// int[] ints = CheckArray(new int[] { 1, 21, 3, 40, 5 }, (int x) => x % 2 == 0);
-int[] ints = CheckArray(new int[] { 1, 21, 3, 40, 5 }, x => x % 2 == 0);
+// №3 - укороченный вариант
+// int[] ints = CheckArr(new int[] { 1, 20, 3, 4, 5 }, (int x) =>
+//  {
+//      return x % 5 == 0 && x % 2 == 0;
+//  });
 
-// Func<int, bool> m = x => x % 2 == 0;
+// №4 - более короткий вариант для однострочного тела
+// int[] ints = CheckArr(new int[] { 1, 20, 3, 4, 5 }, (int x) => x % 5 == 0 && x % 2 == 0);
+
+// №5 - лямбда-выражения - еще более укороченный вариант (в делегате четко определен тип - нет нужны указывать его здесь)
+// int[] ints = CheckArr(new int[] { 1, 20, 3, 4, 5 }, x => x % 5 == 0 && x % 2 == 0);
+
+// Func<int, bool> m = x => x % 5 == 0 && x % 2 == 0;
+int[] ints = CheckArr(new int[] { 1, 20, 3, 4, 5 }, x => x % 5 == 0 && x % 2 == 0);
 
 Console.WriteLine(String.Join(", ", ints));
 
-// delegate bool MyMethodDelegate(int value);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// int Add(int x, int y)
-// {
-//     return x + y;
-// }
-
-// int Multiply(int x, int y)
-// {
-//     return x * y;
-// }
-
-// // Использование делегата с методом Add
-// Operation op = Add;
-// Console.WriteLine($"Сумма 5 и 3: {op(5, 3)}");
-
-// // Использование делегата с лямбда-выражением
-// op = (x, y) => x - y;
-// Console.WriteLine($"Разница 5 и 3: {op(5, 3)}");
-
-// // Создание многоадресного делегата
-// op += Multiply; // Добавляем метод Multiply к делегату
-//                 // Поскольку делегат теперь многоадресный, последний метод в цепочке определяет возвращаемое значение
-// Console.WriteLine($"Произведение 5 и 3: {op(5, 3)}");
-
-// // Использование встроенных делегатов
-// Action<string> showMessage = Console.WriteLine; // Делегат для метода без возвращаемого значения
-// showMessage("Привет, мир!");
-
-// Func<int, int, int> sum = (x, y) => x + y; // Делегат для метода с возвращаемым значением
-// Console.WriteLine($"Сумма через Func: {sum(5, 3)}");
-
-// // Определение делегата
-// public delegate int Operation(int x, int y);
+// delegate bool MyDelegate(int val); // повторяет сигнатуру метода
