@@ -1,3 +1,8 @@
++++
+```C#
+int num = int.Parse(Console.ReadLine());
+Console.WriteLine(Convert.ToString(Math.Abs(num)).Length);
+```
 
 ### Формулировка
 Напишите программу для подсчета количества цифр в заданном целом числе.

@@ -1,3 +1,11 @@
++++
+```C#
+double getWeight(string sex, double height)
+{
+    return (sex.ToLower() == "m") ? Math.Round(height - 100 - ((height - 150) / 4), 2) : Math.Round(height - 110, 2);
+}
+Console.WriteLine(getWeight("f", 164));
+```
 
 ### Формулировка
 Напишите программу для расчета идеального веса человека на основе его роста и пола.

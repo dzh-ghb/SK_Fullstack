@@ -1,4 +1,10 @@
-
++++
+```C#
+int[] data = [1, 2, 3, 4, 5];
+Console.WriteLine(String.Join(", ", data));
+Random.Shared.Shuffle(data);
+Console.WriteLine(String.Join(", ", data));
+```
 
 ### Формулировка
 Создать программу, которая перемешивает элементы массива в случайном порядке.

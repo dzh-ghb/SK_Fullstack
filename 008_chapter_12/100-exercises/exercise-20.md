@@ -1,3 +1,11 @@
++++
+```C#
+string checkValid(string mail)
+{
+    return (mail.Contains("@") && mail.Contains(".") ? "correct" : "incorrect");
+}
+Console.WriteLine(checkValid("123@qwe.32"));
+```
 
 ### Формулировка
 Напишите программу для проверки корректности введенного email.

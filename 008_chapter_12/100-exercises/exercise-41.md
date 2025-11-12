@@ -1,3 +1,18 @@
++++
+```C#
+bool isNum(string str)
+{
+    String nums = String.Join("", Enumerable.Range(0, 10).ToList());
+
+    foreach (char each in str)
+    {
+        if (!nums.Contains(each)) return false;
+    }
+    return true;
+}
+string res = Console.ReadLine();
+Console.WriteLine(isNum(res));
+```
 
 ### Формулировка
 Напишите программу, которая определяет, содержит ли строка только цифры.

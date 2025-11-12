@@ -1,3 +1,15 @@
++++
+```C#
+int n = int.Parse(Console.ReadLine());
+
+List<int> nums = Enumerable.Range(0, n)
+    .Select(i => Random.Shared.Next(0, 50))
+    .ToList();
+
+Console.WriteLine(String.Join(", ", nums));
+Console.WriteLine(nums.Max());
+Console.WriteLine(nums.Min());
+```
 
 ### Формулировка
 Найти разность между максимальным и минимальным элементами массива, состоящего из N случайных чисел.

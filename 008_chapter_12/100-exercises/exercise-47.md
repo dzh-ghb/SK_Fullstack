@@ -1,3 +1,42 @@
++++
+```C#
+using System.Text;
+
+(string str, string res) getRes(int length)
+{
+    string lowerLetters = "абвгдежзийклмнопрстуфхцчшщъыьэюяabcdefghijklmnopqrstuvwxyz";
+    char[] arr = new char[length];
+    for (int i = 0; i < length; i++)
+    {
+        arr[i] = lowerLetters[Random.Shared.Next(lowerLetters.Length)];
+    }
+
+    Dictionary<char, int> res = new();
+    for (int i = 0; i < lowerLetters.Length; i++)
+    {
+        res.Add(lowerLetters[i], 0);
+    }
+
+    for (int i = 0; i < length; i++)
+    {
+        if (lowerLetters.Contains(arr[i].ToString().ToLower())) res[arr[i]]++;
+    }
+
+    StringBuilder sB = new("{");
+    foreach (var pair in res)
+    {
+        sB.Append($"'{pair.Key}':{pair.Value}, ");
+    }
+    sB.Remove(sB.Length - 2, 2);
+    sB.Append('}');
+    // string resStr = sB.ToString().Substring(0, sB.Length - 1);
+    return ((String.Join("", arr)), sB.ToString());
+}
+
+int len = int.Parse(Console.ReadLine());
+(string str1, string res1) res = getRes(len);
+Console.WriteLine(res.str1 + "\n" + res.res1);
+```
 
 ### Формулировка
 Напишите программу, которая заполняет массив случайными буквами и находит частоту встречаемости каждой буквы в массиве.

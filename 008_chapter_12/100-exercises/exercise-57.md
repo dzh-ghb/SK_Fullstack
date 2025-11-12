@@ -1,3 +1,32 @@
++++
+```C#
+using System.Data;
+
+int len = int.Parse(Console.ReadLine());
+
+List<int> nums = Enumerable.Range(0, len)
+    .Select(i => Random.Shared.Next(0, 51))
+    .ToList();
+
+int avg = (int)nums.Average();
+int diff = Math.Abs(nums[0] - avg);
+int res = nums[0];
+Console.WriteLine($"diff-0 {diff}; res-0 {res}");
+
+for (int i = 1; i < nums.Count; i++)
+{
+    if (Math.Abs(nums[i] - avg) < diff)
+    {
+        res = nums[i];
+        diff = Math.Abs(nums[i] - avg);
+        Console.WriteLine($"diff-{i} {diff}; res {res}");
+    }
+}
+
+Console.WriteLine(String.Join(", ", nums));
+Console.WriteLine($"avg {avg}");
+Console.WriteLine($"res {res}");
+```
 
 ### Формулировка
 Найти в массиве элемент, наиболее близкий к среднему арифметическому всех его элементов.

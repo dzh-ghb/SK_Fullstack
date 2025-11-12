@@ -1,3 +1,18 @@
++++
+```C#
+int getScalar(int[] a, int[] b)
+{
+    int result = 0;
+    for (int i = 0; i < a.Length; i++)
+    {
+        int mult = a[i] * b[i];
+        result += mult;
+    }
+    return result;
+}
+Console.WriteLine(getScalar([1, 2, 3], [4, 5, 6]));
+```
+
 ```html
 <h1>Формулировка</h1>
 

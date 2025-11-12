@@ -1,3 +1,25 @@
++++
+```C#
+int len = int.Parse(Console.ReadLine());
+int num = int.Parse(Console.ReadLine());
+int res = -1;
+
+List<int> numList = Enumerable.Range(0, len)
+    .Select(i => Random.Shared.Next(0, 51))
+    .ToList();
+
+for (int i = 0; i < numList.Count; i++)
+{
+    if (num == numList[i])
+    {
+        res = i;
+        break;
+    }
+}
+
+Console.WriteLine(String.Join(", ", numList));
+Console.WriteLine(res);
+```
 
 ### Формулировка
 Определить, содержит ли массив заданное число. Если да, вывести индекс первого вхождения числа в массив.

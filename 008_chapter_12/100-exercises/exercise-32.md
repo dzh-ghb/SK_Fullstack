@@ -1,3 +1,19 @@
++++
+```C#
+void getSquare(int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            Console.Write('*');
+        }
+        Console.WriteLine();
+    }
+}
+int count = int.Parse(Console.ReadLine());
+getSquare(count);
+```
 
 ### Формулировка
 Напишите программу, которая выводит на экран квадрат из звездочек (`*`), сторона квадрата равна N, где N — число, введенное пользователем.

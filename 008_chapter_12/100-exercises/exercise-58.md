@@ -1,3 +1,23 @@
++++
+```C#
+List<int> nums = Enumerable.Range(0, 10)
+    .Select(i => Random.Shared.Next(4))
+    .ToList();
+Console.WriteLine(String.Join(", ", nums));
+
+int len = nums.Count;
+nums = nums.Where(i => i != 0)
+    .ToList();
+
+List<int> res = new(len);
+for (int i = 0; i < len; i++)
+{
+    if (i < nums.Count) res.Add(nums[i]);
+    else res.Add(0);
+}
+Console.WriteLine(String.Join(", ", res));
+```
+
 Конечно, вот решение:
 
 ### Формулировка

@@ -1,4 +1,11 @@
-
++++
+```C#
+double getCelsius(double fahrenheit)
+{
+    return (double)5 / 9 * (fahrenheit - 32);
+}
+Console.WriteLine(Math.Round(getCelsius(68)));
+```
 ### Формулировка
 Напишите функцию/метод для перевода градусов Фаренгейта в градусы Цельсия.
 

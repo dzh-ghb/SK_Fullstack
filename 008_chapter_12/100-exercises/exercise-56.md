@@ -1,3 +1,19 @@
++++
+```C#
+List<int> sourceArr = new();
+
+for (int i = 0; i < 20; i++)
+{
+    sourceArr.Add(Random.Shared.Next(1000));
+}
+
+List<int> evenArr = sourceArr.Where(i => i % 2 == 0).ToList();
+List<int> oddArr = sourceArr.Where(i => i % 2 == 1).ToList();
+
+Console.WriteLine(String.Join(", ", sourceArr));
+Console.WriteLine(String.Join(", ", evenArr));
+Console.WriteLine(String.Join(", ", oddArr));
+```
 
 ### Формулировка
 Разделить массив на два: в одном будут четные числа из исходного массива, в другом - нечетные.

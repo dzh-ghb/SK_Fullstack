@@ -1,3 +1,35 @@
++++
+```C#
+// int getMinutes(string weekCount)
+// {
+//     double weeks = 0;
+//     switch (weekCount.ToLower())
+//     {
+//         case "полнедели":
+//             weeks = 0.5;
+//             break;
+//         case "неделя":
+//             weeks = 1;
+//             break;
+//         case "две недели":
+//             weeks = 2;
+//             break;
+//     }
+//     return (int)Math.Floor(weeks * 7 * 24 * 60);
+// }
+// Console.Write("Количество недель: ");
+// string weeks = Console.ReadLine();
+// Console.WriteLine($"{getMinutes(weeks)} мин.");
+
+int getMinutes(double weeks)
+{
+    return (int)Math.Floor(weeks * 7 * 24 * 60);
+}
+Console.Write("Количество недель: ");
+double weekPart = double.Parse(Console.ReadLine());
+
+Console.WriteLine($"{getMinutes(weekPart)} мин.");
+```
 
 ### Формулировка
 Вычисление количества минут в неделе.

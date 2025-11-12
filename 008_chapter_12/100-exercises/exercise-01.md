@@ -1,3 +1,11 @@
++++
+```C#
+int getMult(int a, int b, int c)
+{
+    return a * b * c;
+}
+Console.WriteLine(getMult(-1, 0, 10));
+```
 
 ### Формулировка
 Умножение трех чисел.

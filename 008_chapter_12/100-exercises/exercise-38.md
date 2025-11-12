@@ -1,3 +1,21 @@
++++
+```C#
+using System.Text;
+
+string getID(int length)
+{
+    StringBuilder id = new();
+    for (int i = 0; i < length; i++)
+    {
+        char c = (char)Random.Shared.Next(33, 127);
+        id.Append(c);
+    }
+    return id.ToString();
+}
+
+int len = int.Parse(Console.ReadLine());
+Console.WriteLine(getID(len));
+```
 
 ### Формулировка
 Напишите программу для генерации уникальных идентификаторов (ID) фиксированной длины.

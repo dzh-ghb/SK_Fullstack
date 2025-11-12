@@ -1,3 +1,11 @@
++++
+```C#
+int getDaysToNY(DateTime date)
+{
+    return (int)Math.Abs((date.Date - new DateTime(date.Year + 1, 1, 1)).TotalDays);
+}
+Console.WriteLine(getDaysToNY(new(2025, 11, 11)));
+```
 
 ### Формулировка
 Напишите программу для калькуляции количества дней до нового года.

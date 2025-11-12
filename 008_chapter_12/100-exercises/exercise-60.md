@@ -1,4 +1,24 @@
++++
+```C#
+List<int> nums = Enumerable.Range(0, 10)
+    // .Select(i => Random.Shared.Next(4))
+    .ToList();
+Console.WriteLine(String.Join(", ", nums));
 
+int item = nums[0];
+bool res = true;
+for (int i = 1; i < nums.Count; i++)
+{
+    if (nums[i] < item)
+    {
+        res = false;
+        break;
+    }
+    item = nums[i];
+}
+
+Console.WriteLine(res);
+```
 
 ### Формулировка
 Написать программу, которая определяет, является ли массив строго возрастающей последовательностью.
