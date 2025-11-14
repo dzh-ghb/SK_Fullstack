@@ -1,0 +1,52 @@
+class Person
+{
+    private string name; // по дефолту, модификатор явно можно не указывать
+    int age;
+
+    // конструктор класса - для начальной инициализации экземпляра класса
+    public Person(string name, int age)
+    {
+        this.name = name;
+        this.age = age;
+    }
+
+    // геттеры и сеттеры - короткий вариант
+    public string Name // свойство
+    {
+        get { return name; }
+        // private set { name = value; }
+        set { name = value; }
+    }
+
+    public int Age
+    {
+        get { return age; }
+        set { age = value; }
+    }
+
+    #region Code
+    // геттеры для чтения полей - длинный вариант
+    // public string GetName()
+    // {
+    //     return name;
+    // }
+
+    // public int GetAge()
+    // {
+    //     return age;
+    // }
+    #endregion
+
+    #region Code
+    // сеттеры для изменения полей - длинный вариант
+    // public void SetName(string name)
+    // {
+    //     this.name = name;
+    // }
+
+    // public void SetAge(int age)
+    // {
+    //     this.age = age;
+    // }
+    #endregion
+}
