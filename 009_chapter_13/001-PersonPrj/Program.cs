@@ -2,9 +2,7 @@
 Person person2 = new Person("BEN", 15);
 
 Repository repository = new();
-repository.Add(person1);
-repository.Add(person2);
-// Console.WriteLine($"\n{person1.Name}, {person1.Age}");
+repository.Add(person1, person2);
 for (int i = 0; i < 10; i++)
 {
     repository.Add(new Person($"Person {i}", i));
@@ -12,7 +10,6 @@ for (int i = 0; i < 10; i++)
 
 Printer printer = new();
 printer.Print(repository);
-// repository.Print();
 Console.WriteLine($"\nLength: {repository.Length()}");
 
 Person somePerson = repository.getPersonById(0);

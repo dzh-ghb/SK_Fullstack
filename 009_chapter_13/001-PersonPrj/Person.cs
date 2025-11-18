@@ -10,4 +10,10 @@ class Person
     // автосвойства - создание свойства и поля одновременно
     public string Name { get; set; }
     public int Age { get; private set; }
+
+    override // переопределение метода
+    public string ToString()
+    {
+        return $"{Name}, {Age}";
+    }
 }

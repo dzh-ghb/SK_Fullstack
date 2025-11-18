@@ -1,25 +1,29 @@
 class Repository
 {
-    private List<Person> people;
+    private List<Person> storage;
 
     // public int Count { get { return people.Count; } } // не сладко
     // public int Count { get => people.Count; } // сладко
-    public int Count => people.Count; //очень сладко (геттер, только чтение)
+    public int Count => storage.Count; //очень сладко (геттер, только чтение)
 
     public Repository()
     {
-        people = new List<Person>();
+        storage = new List<Person>();
     }
 
-    public void Add(Person person)
+    // добавление нескольких персонажей
+    public void Add(params Person[] people)
     {
-        people.Add(person);
+        foreach (Person person in people)
+        {
+            storage.Add(person);
+        }
     }
 
     public Person getPersonById(int id)
     {
-        if (id < 0 || id >= people.Count) return new Person("empty", -1); // заглушка
-        return people[id];
+        if (id < 0 || id >= storage.Count) return new Person("empty", -1); // заглушка
+        return storage[id];
     }
 
     #region It's unnecessary here
@@ -35,7 +39,7 @@ class Repository
 
     public int Length()
     {
-        return people.Count;
+        return storage.Count;
     }
 }
 
