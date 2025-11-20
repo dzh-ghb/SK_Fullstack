@@ -1,4 +1,4 @@
-class Person
+abstract class Person // запрет на создание экземпляров класса
 {
     // конструктор класса - для начальной инициализации экземпляра класса
     public Person(string name, int age)

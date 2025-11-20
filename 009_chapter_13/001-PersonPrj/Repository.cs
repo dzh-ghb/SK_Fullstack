@@ -22,7 +22,7 @@ class Repository
 
     public Person getPersonById(int id)
     {
-        if (id < 0 || id >= storage.Count) return new Person("empty", -1); // заглушка
+        if (id < 0 || id >= storage.Count) return new NullPerson(); // заглушка, паттерн NullObject
         return storage[id];
     }
 
