@@ -1,4 +1,4 @@
-class Repository
+class Repository : IRepository
 {
     private List<Person> storage;
 
@@ -14,13 +14,13 @@ class Repository
     // добавление нескольких персонажей
     public void Add(params Person[] people)
     {
-        foreach (Person person in people)
+        foreach (var item in people)
         {
-            storage.Add(person);
+            storage.Add(item);
         }
     }
 
-    public Person getPersonById(int id)
+    public Person GetById(int id)
     {
         if (id < 0 || id >= storage.Count) return new NullPerson(); // заглушка, паттерн NullObject
         return storage[id];
@@ -37,7 +37,7 @@ class Repository
     // }
     #endregion
 
-    public int Length()
+    public int GetCount()
     {
         return storage.Count;
     }

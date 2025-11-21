@@ -12,9 +12,9 @@ repository.Add(student, employee, teacher);
 
 Printer printer = new();
 printer.Print(repository);
-Console.WriteLine($"\nLength: {repository.Length()}");
+Console.WriteLine($"\nLength: {repository.GetCount()}");
 
-Person somePerson = repository.getPersonById(0);
+Person somePerson = repository.GetById(0);
 Console.WriteLine($"\n{somePerson.Name}, {somePerson.Age}");
 
 Person per = new Student("", 0, ""); // полиморфная переменная (принцип полиморфизма)
