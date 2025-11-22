@@ -1,6 +1,6 @@
 class Printer
 {
-    public void Print(IRepository repository) // передача интерфейса в параметры
+    public void Print(IRepositoryPerson repository) // передача интерфейса в параметры
     {
         int count = repository.Count;
 

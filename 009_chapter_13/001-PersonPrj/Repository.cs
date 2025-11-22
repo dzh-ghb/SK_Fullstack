@@ -1,4 +1,4 @@
-class Repository : IRepository
+class Repository : IRepositoryPerson
 {
     private List<Person> storage;
 

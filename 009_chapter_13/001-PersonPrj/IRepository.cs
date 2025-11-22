@@ -1,6 +1,7 @@
-interface IRepository
+// обобщенный интерфейс (не привязан к конкретному типу)
+interface IRepository<T>
 {
     int Count { get; }
-    void Add(params Person[] people);
-    Person GetById(int id);
+    void Add(params T[] data);
+    T GetById(int id);
 }
