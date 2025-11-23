@@ -1,10 +1,10 @@
 class Circle(int radius) : IShape
 {
-    public int Radius { get; } = radius;
+    private int radius = radius;
 
     public (string name, double area) GetShapeInfo()
     {
-        double area = Math.Round(Math.PI * Math.Pow(Radius, 2), 2);
+        double area = Math.Round(Math.PI * Math.Pow(radius, 2), 2);
         return ("Circle", area);
     }
 }

@@ -1,10 +1,10 @@
 class Square(int side) : IShape
 {
-    public int Side { get; } = side;
+    private int side = side;
 
     public (string name, double area) GetShapeInfo()
     {
-        double area = Math.Round(Math.Pow(Side, 2), 2);
+        double area = Math.Round(Math.Pow(side, 2), 2);
         return ("Square", area);
     }
 }

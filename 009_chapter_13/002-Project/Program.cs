@@ -1,7 +1,7 @@
 ﻿Console.Write("Enter circle radius: ");
 int radius = int.Parse(Console.ReadLine());
-Circle circle = new(radius: radius);
-Console.WriteLine($"{InfoAboutShape.GetName(circle)} area (r = {circle.Radius}): {InfoAboutShape.GetArea(circle)}");
+Circle circle = new(radius);
+Console.WriteLine($"{InfoAboutShape.GetName(circle)} area (r = {radius}): {InfoAboutShape.GetArea(circle)}");
 
 Console.Write("\nEnter triangle sides via space: ");
 string sides = Console.ReadLine();
@@ -25,4 +25,4 @@ catch (FormatException ex)
 Console.Write("\nEnter side of square: ");
 int side = int.Parse(Console.ReadLine());
 Square square = new(side: side);
-Console.WriteLine($"{InfoAboutShape.GetName(square)} area (side = {square.Side}): {InfoAboutShape.GetArea(square)}");
+Console.WriteLine($"{InfoAboutShape.GetName(square)} area (side = {side}): {InfoAboutShape.GetArea(square)}");
