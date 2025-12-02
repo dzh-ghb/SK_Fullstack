@@ -3,7 +3,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Добавляем сервисы Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-// добавление контроллеров в сервисную коллекцию
+/* добавление контроллеров в сервисную коллекцию,
+   включает сервисы маршрутизации запросов контроллером,
+   сервисы обработки HTTP-запросов и тд*/
 builder.Services.AddControllers();
 
 var app = builder.Build();
