@@ -9,6 +9,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 // внедрение зависимости (паттерн, позволяющий создать единственный экземпляр класса)
 builder.Services.AddSingleton<DataContext>();
+builder.Services.AddSingleton<ContactStorage>();
 
 var app = builder.Build();
 // Настраиваем доступ к Swagger

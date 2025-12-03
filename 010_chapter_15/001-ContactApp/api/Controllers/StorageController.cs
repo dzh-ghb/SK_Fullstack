@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 public class StorageController : BaseController
 {
     // корректный способ
-    private DataContext dataContext;
+    private readonly DataContext dataContext;
 
     public StorageController(DataContext dataContext)
     {
