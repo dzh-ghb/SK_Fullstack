@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-[ApiController] // атрибут
-[Route("api/[controller]")] // маршрутизация контроллера (http://localhost:5000/api/Test)
-public class TestController : ControllerBase
+public class TestController : BaseController
 {
     // http://localhost:5000/api/Test/test
     [HttpGet("test")] // добавление маршрута, указание на GET-метод

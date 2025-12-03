@@ -7,6 +7,8 @@ builder.Services.AddSwaggerGen();
    включает сервисы маршрутизации запросов контроллером,
    сервисы обработки HTTP-запросов и тд*/
 builder.Services.AddControllers();
+// внедрение зависимости (паттерн, позволяющий создать единственный экземпляр класса)
+builder.Services.AddSingleton<DataContext>();
 
 var app = builder.Build();
 // Настраиваем доступ к Swagger
