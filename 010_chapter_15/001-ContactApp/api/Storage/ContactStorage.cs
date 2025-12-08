@@ -19,9 +19,17 @@ public class ContactStorage
         }
     }
 
-    public void Create(Contact contact)
+    public bool Create(Contact contact)
     {
+        foreach (var item in Contacts)
+        {
+            if (contact.Id == item.Id)
+            {
+                return false;
+            }
+        }
         Contacts.Add(contact);
+        return true;
     }
 
     public List<Contact> GetAll()
@@ -29,7 +37,7 @@ public class ContactStorage
         return Contacts;
     }
 
-    public void Update(ContactDto contactDto, int id)
+    public bool Update(ContactDto contactDto, int id)
     {
         Contact contact;
         for (int i = 0; i < Contacts.Count; i++)
@@ -50,20 +58,22 @@ public class ContactStorage
                 {
                     contact.Email = contactDto.Email;
                 }
-                return;
+                return true;
             }
         }
+        return false;
     }
 
-    public void Delete(int id)
+    public bool Delete(int id)
     {
         for (int i = 0; i < Contacts.Count; i++)
         {
             if (Contacts[i].Id == id)
             {
                 Contacts.Remove(Contacts[i]);
-                return;
+                return true;
             }
         }
+        return false;
     }
 }

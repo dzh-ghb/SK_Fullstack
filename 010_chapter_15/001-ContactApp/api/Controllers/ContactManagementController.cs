@@ -10,26 +10,30 @@ public class ContactManagementController : BaseController
     }
 
     [HttpPost("contacts")]
-    public void CreateContact([FromBody] Contact contact)
+    public IActionResult CreateContact([FromBody] Contact contact)
     {
-        storage.Create(contact);
+        bool result = storage.Create(contact);
+        return result ? Ok(contact) : Conflict("Контакт с указанным ID уже существует");
     }
 
     [HttpGet("contacts")] // маршрут тот же, но методы разные - разрешено
-    public List<Contact> GetAllContacts()
+    public ActionResult<List<Contact>> GetAllContacts()
     {
-        return storage.GetAll();
+        return Ok(storage.GetAll());
     }
 
     [HttpPut("contacts/{id}")]
-    public void UpdateContact([FromBody] ContactDto contactDto, int id)
+    public IActionResult UpdateContact([FromBody] ContactDto contactDto, int id)
     {
-        storage.Update(contactDto, id);
+        bool result = storage.Update(contactDto, id);
+        // TODO: return Ok(storage.GetContact(id))
+        return result ? Ok() : Conflict("Контакт с указанным ID не найден");
     }
 
     [HttpDelete("contacts/{id}")]
-    public void DeleteContact(int id)
+    public IActionResult DeleteContact(int id)
     {
-        storage.Delete(id);
+        bool result = storage.Delete(id);
+        return result ? NoContent() : BadRequest("Контакт с указанным ID не найден");
     }
 }

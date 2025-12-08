@@ -8,4 +8,10 @@ public class TestController : BaseController
     {
         return "TEST_TEST";
     }
+
+    [HttpGet("testRequest")]
+    public ActionResult<string> GetTestRequest()
+    {
+        return BadRequest("BAD");
+    }
 }
