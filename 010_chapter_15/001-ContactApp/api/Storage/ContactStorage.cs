@@ -37,6 +37,18 @@ public class ContactStorage
         return Contacts;
     }
 
+    public (bool result, Contact contact) GetContact(int id)
+    {
+        for (int i = 0; i < Contacts.Count; i++)
+        {
+            if (Contacts[i].Id == id)
+            {
+                return (true, Contacts[i]);
+            }
+        }
+        return (false, new NonExistingContact()); //контакт-заглушка
+    }
+
     public bool Update(ContactDto contactDto, int id)
     {
         Contact contact;

@@ -13,7 +13,7 @@ public class ContactManagementController : BaseController
     public IActionResult CreateContact([FromBody] Contact contact)
     {
         bool result = storage.Create(contact);
-        return result ? Ok(contact) : Conflict("Контакт с указанным ID уже существует");
+        return result ? Created($"contacts/{contact.Id}", contact) : Conflict("Контакт с указанным ID уже существует");
     }
 
     [HttpGet("contacts")] // маршрут тот же, но методы разные - разрешено
@@ -22,12 +22,27 @@ public class ContactManagementController : BaseController
         return Ok(storage.GetAll());
     }
 
+    [HttpGet("contacts/{id}")]
+    public ActionResult<Contact> GetContactById(int id)
+    {
+        var (result, contact) = storage.GetContact(id);
+        if (result)
+        {
+            return Ok(contact);
+        }
+        else if (id >= 0)
+        {
+            return NotFound("Контакт с указанным ID не найден");
+        }
+        return BadRequest("Некорректный ID");
+    }
+
     [HttpPut("contacts/{id}")]
     public IActionResult UpdateContact([FromBody] ContactDto contactDto, int id)
     {
         bool result = storage.Update(contactDto, id);
-        // TODO: return Ok(storage.GetContact(id))
-        return result ? Ok() : Conflict("Контакт с указанным ID не найден");
+        Contact contact = storage.GetContact(id).contact;
+        return result ? Ok(contact) : Conflict("Контакт с указанным ID не найден");
     }
 
     [HttpDelete("contacts/{id}")]
