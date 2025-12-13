@@ -1,8 +1,16 @@
+using Microsoft.OpenApi.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Добавляем сервисы Swagger
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(opt =>
+{
+    opt.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "API (список контактов)",
+    });
+});
 /* добавление контроллеров в сервисную коллекцию,
    включает сервисы маршрутизации запросов контроллером,
    сервисы обработки HTTP-запросов и тд*/
