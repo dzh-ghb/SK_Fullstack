@@ -1,7 +1,7 @@
 import React from "react";
 import RowTableContact from "./components/RowTableContact";
 
-const TableContact = () => {
+const TableContact = (props) => {
     return (
         <table className="table table-hover">
             <thead>
@@ -13,9 +13,17 @@ const TableContact = () => {
                 </tr>
             </thead>
             <tbody>
-                <RowTableContact />
-                <RowTableContact />
-                <RowTableContact />
+                {
+                    props.contacts.map(
+                        item =>
+                        (<RowTableContact
+                            id={item.id}
+                            name={item.name}
+                            phoneNumber={item.phoneNumber}
+                            email={item.email}
+                        />)
+                    )
+                }
             </tbody>
         </table>
     );

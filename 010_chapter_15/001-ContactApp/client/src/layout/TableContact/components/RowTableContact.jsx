@@ -1,12 +1,12 @@
 import React from "react";
 
-const RowTableContact = () => {
+const RowTableContact = (props) => {
     return (
         <tr>
-            <td>1</td>
-            <td>Joe Peach</td>
-            <td>8281920</td>
-            <td>duv@mylo.mda</td>
+            <td>{props.id}</td>
+            <td>{props.name}</td>
+            <td>{props.phoneNumber}</td>
+            <td>{props.email}</td>
         </tr>
     );
 }
