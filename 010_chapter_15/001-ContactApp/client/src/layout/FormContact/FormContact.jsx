@@ -6,7 +6,11 @@ const FormContact = (props) => {
     const [contactEmail, setContactEmail] = useState("");
 
     const submit = () => {
+        if (contactName.trim() === "" || contactPhoneNumber.trim() === "" || contactEmail.trim() === "") return;
         props.addContact(contactName, contactPhoneNumber, contactEmail);
+        setContactName("");
+        setContactPhoneNumber("");
+        setContactEmail("");
     }
 
     return (
@@ -16,16 +20,19 @@ const FormContact = (props) => {
                     <div className="mb-3">
                         <label className="form-label">Введите имя:</label>
                         <input className="form-control" type="text"
+                            value={contactName}
                             onChange={e => setContactName(e.target.value)} />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Введите номер телефона:</label>
                         <input className="form-control" type="text"
+                            value={contactPhoneNumber}
                             onChange={e => setContactPhoneNumber(e.target.value)} />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Введите адрес электронной почты:</label>
                         <textarea className="form-control" rows={1}
+                            value={contactEmail}
                             onChange={e => setContactEmail(e.target.value)} />
                     </div>
                 </form>
