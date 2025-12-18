@@ -11,26 +11,13 @@ const App = () => {
     ]
   );
 
+  const isEmptyArray = (array) => {
+    return Array.isArray(array) && array.length === 0;
+  }
+
   const addContact = (contactName, contactPhoneNumber, contactEmail) => {
-    // #1 - унификация id через сортировку массива
-    // const newId = contacts
-    //   .sort((x, y) => x.id - y.id)[contacts.length - 1]
-    //   .id + 1;
+    const newId = isEmptyArray(contacts) ? 1 : Math.max(...contacts.map(e => e.id)) + 1;
 
-    // #2 - без сортировки через линейный алгоритм поиска
-    // let newId = -1;
-    // for (let i = 0; i < contacts.length; i++) {
-    //   const elementId = contacts[i].id;
-    //   if (elementId > newId) {
-    //     newId = elementId;
-    //   }
-    // }
-    // newId++;
-
-    // #3
-    const newId = Math.max(...contacts.map(e => e.id)) + 1;
-
-    console.log(newId);
     const item = {
       id: newId,
       name: contactName,
@@ -38,7 +25,10 @@ const App = () => {
       email: contactEmail
     };
     setContacts([...contacts, item]);
-    console.log(contacts);
+  }
+
+  const deleteContact = (id) => {
+    setContacts(contacts.filter(item => item.id !== id));
   }
 
   return (
@@ -49,7 +39,9 @@ const App = () => {
         </div>
 
         <div className="card-body">
-          <TableContact contacts={contacts} />
+          <TableContact
+            contacts={contacts}
+            deleteContact={deleteContact} />
           <FormContact addContact={addContact} />
         </div>
       </div>
