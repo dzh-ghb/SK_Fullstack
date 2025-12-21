@@ -1,21 +1,20 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TableContact from "./layout/TableContact/TableContact";
 import FormContact from "./layout/FormContact/FormContact";
 
-const App = () => {
-  const url = "http://localhost:5000/api/ContactManagement/contacts";
-  axios.get(url).then(
-    res => console.log(res.data)
-  );
+const baseApiUrl = process.env.REACT_APP_API_URL;
 
-  const [contacts, setContacts] = useState(
-    [
-      { id: 7, name: "Joe Peach 1", phoneNumber: 1231, email: "duv1@mylo.mda" },
-      { id: 3, name: "Joe Peach 2", phoneNumber: 1232, email: "duv2@mylo.mda" },
-      { id: 1, name: "Joe Peach 3", phoneNumber: 1233, email: "duv3@mylo.mda" },
-    ]
-  );
+const App = () => {
+  const [contacts, setContacts] = useState([]);
+
+  // GET-запрос
+  const url = `${baseApiUrl}/contacts`;
+  useEffect(() => {
+    axios.get(url).then(
+      res => setContacts(res.data)
+    );
+  }, []);
 
   const isEmptyArray = (array) => {
     return Array.isArray(array) && array.length === 0;
@@ -30,10 +29,18 @@ const App = () => {
       phoneNumber: contactPhoneNumber,
       email: contactEmail
     };
+    // POST-запрос
+    const url = `${baseApiUrl}/contacts`;
+    axios.post(url, item); // второй параметр - тело запроса
+
     setContacts([...contacts, item]);
   }
 
   const deleteContact = (id) => {
+    // DELETE-запрос
+    const url = `${baseApiUrl}/contacts/${id}`;
+    axios.delete(url);
+
     setContacts(contacts.filter(item => item.id !== id));
   }
 
