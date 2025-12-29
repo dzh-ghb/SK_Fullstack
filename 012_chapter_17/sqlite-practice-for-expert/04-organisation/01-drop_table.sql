@@ -1,0 +1,3 @@
+DROP TABLE IF EXISTS emps;
+
+DROP TABLE IF EXISTS emps_details;
