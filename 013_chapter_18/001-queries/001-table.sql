@@ -1,0 +1,19 @@
+DROP TABLE IF EXISTS contacts;
+
+CREATE TABLE IF NOT EXISTS contacts (
+    id    INTEGER PRIMARY KEY AUTOINCREMENT,
+    name  TEXT    NOT NULL
+                  DEFAULT ('Joe Peach'),
+    phone TEXT    NOT NULL
+                  DEFAULT ('Номер не указан'),
+    email TEXT    NOT NULL
+                  DEFAULT ('Email не указан') 
+);
+
+SELECT *
+  FROM contacts;
+
+insert into contacts(name, phone, email)
+values ('Den', '1337', 'dzhits@ndbt.ye'),
+    ('Ben', '52', 'ben@za.voz'),
+    ('Yen', '11', 'ye@ze.ee');
