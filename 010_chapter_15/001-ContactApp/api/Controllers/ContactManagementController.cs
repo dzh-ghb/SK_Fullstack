@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 
 public class ContactManagementController : BaseController
 {
-    private readonly ContactStorage storage; // readonly - значение присваивается только один раз
+    private readonly IStorage storage; // readonly - значение присваивается только один раз
 
-    public ContactManagementController(ContactStorage storage)
+    public ContactManagementController(IStorage storage)
     {
         this.storage = storage;
     }

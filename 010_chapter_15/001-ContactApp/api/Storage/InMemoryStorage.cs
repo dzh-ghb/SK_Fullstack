@@ -1,8 +1,8 @@
-public class ContactStorage
+public class InMemoryStorage : IStorage
 {
     private List<Contact> Contacts { get; set; }
 
-    public ContactStorage()
+    public InMemoryStorage()
     {
         this.Contacts = new List<Contact>();
 
