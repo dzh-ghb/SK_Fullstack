@@ -3,7 +3,7 @@ using Microsoft.Data.Sqlite;
 
 public class SQLiteStorage : IStorage
 {
-    // создание подключения к БД
+    // строка подключения к БД
     string connectionString = "Data Source = contacts.db";
 
     public bool Create(Contact contact)
@@ -16,14 +16,13 @@ public class SQLiteStorage : IStorage
         // .Append("insert into contacts (name, phone, email) values")
         // .Append($"('{contact.Name}', '{contact.PhoneNumber}', '{contact.Email}');")
         // .ToString();
-
         string query = "insert into contacts (name, phone, email) values (@name, @phone, @email);";
         command.CommandText = query;
         command.Parameters.AddWithValue("@name", contact.Name);
         command.Parameters.AddWithValue("@phone", contact.PhoneNumber);
         command.Parameters.AddWithValue("@email", contact.Email);
 
-        Console.WriteLine("sql >> " + query);
+        // Console.WriteLine("sql >> " + query);
         return command.ExecuteNonQuery() > 0;
     }
 
@@ -31,7 +30,7 @@ public class SQLiteStorage : IStorage
     {
         var contacts = new List<Contact>();
 
-        // открытие подключения к БД
+        // создание и открытие подключения к БД
         using var connection = new SqliteConnection(connectionString);
         connection.Open();
 
@@ -68,6 +67,14 @@ public class SQLiteStorage : IStorage
 
     public bool Delete(int id)
     {
-        throw new NotImplementedException();
+        using var connection = new SqliteConnection(connectionString);
+        connection.Open();
+
+        var command = connection.CreateCommand();
+        string query = "delete from contacts where id = @id";
+        command.CommandText = query;
+        command.Parameters.AddWithValue("@id", id);
+
+        return command.ExecuteNonQuery() > 0;
     }
 }
