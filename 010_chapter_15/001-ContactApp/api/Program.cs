@@ -17,7 +17,7 @@ builder.Services.AddSwaggerGen(opt =>
    сервисы обработки HTTP-запросов и тд*/
 builder.Services.AddControllers();
 // внедрение зависимости (паттерн, позволяющий создать единственный экземпляр класса)
-builder.Services.AddSingleton<IStorage, InMemoryStorage>(); //использование реализации по интерфейсу
+builder.Services.AddSingleton<IStorage, SQLiteStorage>(); //использование реализации по интерфейсу
 
 // описание разрешений на доступ к ресурсу
 builder.Services.AddCors(opt =>
