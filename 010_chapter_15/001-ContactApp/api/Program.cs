@@ -16,8 +16,9 @@ builder.Services.AddSwaggerGen(opt =>
    включает сервисы маршрутизации запросов контроллером,
    сервисы обработки HTTP-запросов и тд*/
 builder.Services.AddControllers();
+var stringConnection = builder.Configuration.GetConnectionString("SQLiteStringConnection");
 // внедрение зависимости (паттерн, позволяющий создать единственный экземпляр класса)
-builder.Services.AddSingleton<IStorage>(new SQLiteStorage("Data Source = contacts.db")); // передача экземпляра
+builder.Services.AddSingleton<IStorage>(new SQLiteStorage(stringConnection)); // передача экземпляра
 
 // описание разрешений на доступ к ресурсу
 builder.Services.AddCors(opt =>
@@ -25,7 +26,7 @@ builder.Services.AddCors(opt =>
     {
         policy.AllowAnyMethod() // доступ любого метода
         .AllowAnyHeader() // доступ любых заголовков
-        .WithOrigins(args[0]); // работа только с конкретным клиентом (url приложения),
+        .WithOrigins(builder.Configuration["client"]); // работа только с конкретным клиентом (url приложения),
         // указание через внешний аргумент
     }));
 
