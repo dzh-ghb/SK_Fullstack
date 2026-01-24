@@ -1,34 +1,7 @@
-using Microsoft.AspNetCore.Cors.Infrastructure;
-using Microsoft.OpenApi.Models;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Добавляем сервисы Swagger
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(opt =>
-{
-    opt.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Title = "API (список контактов)",
-    });
-});
-/* добавление контроллеров в сервисную коллекцию,
-   включает сервисы маршрутизации запросов контроллером,
-   сервисы обработки HTTP-запросов и тд*/
-builder.Services.AddControllers();
-var stringConnection = builder.Configuration.GetConnectionString("SQLiteStringConnection");
-// внедрение зависимости (паттерн, позволяющий создать единственный экземпляр класса)
-builder.Services.AddSingleton<IStorage>(new SQLiteStorage(stringConnection)); // передача экземпляра
-
-// описание разрешений на доступ к ресурсу
-builder.Services.AddCors(opt =>
-    opt.AddPolicy("CorsPolicy", policy => // конкретное правило/политика
-    {
-        policy.AllowAnyMethod() // доступ любого метода
-        .AllowAnyHeader() // доступ любых заголовков
-        .WithOrigins(builder.Configuration["client"]); // работа только с конкретным клиентом (url приложения),
-        // указание через внешний аргумент
-    }));
+builder.Services.AddServiceCollection(builder.Configuration);
 
 var app = builder.Build();
 // Настраиваем доступ к Swagger
