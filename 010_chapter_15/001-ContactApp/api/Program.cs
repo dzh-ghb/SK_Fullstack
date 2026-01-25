@@ -1,9 +1,13 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Добавляем сервисы Swagger
+// расширение над IServiceCollection для регистрации зависимостей в отдельном классе
 builder.Services.AddServiceCollection(builder.Configuration);
 
 var app = builder.Build();
+
+// расширение над IServiceProvider для инициализации БД перед началом работы приложения
+app.Services.AddCustomService(builder.Configuration);
+
 // Настраиваем доступ к Swagger
 app.UseSwagger();
 app.UseSwaggerUI();

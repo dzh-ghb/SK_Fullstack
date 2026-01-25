@@ -4,8 +4,9 @@ public static class AppServiceCollectionExtension
 {
     public static IServiceCollection AddServiceCollection(
         this IServiceCollection services,
-        ConfigurationManager configuration)
+        IConfiguration configuration)
     {
+        // Добавляем сервисы Swagger
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen(opt =>
         {
@@ -18,9 +19,9 @@ public static class AppServiceCollectionExtension
            включает сервисы маршрутизации запросов контроллером,
            сервисы обработки HTTP-запросов и тд*/
         services.AddControllers();
-        var stringConnection = configuration.GetConnectionString("SQLiteStringConnection");
+        var connectionString = configuration.GetConnectionString("SQLiteConnectionString");
         // внедрение зависимости (паттерн, позволяющий создать единственный экземпляр класса)
-        services.AddSingleton<IStorage>(new SQLiteStorage(stringConnection)); // передача экземпляра
+        services.AddSingleton<IStorage>(new SQLiteStorage(connectionString)); // передача экземпляра
 
         // описание разрешений на доступ к ресурсу
         services.AddCors(opt =>
