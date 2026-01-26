@@ -10,20 +10,22 @@ public class SQLiteStorage : IStorage
         this.connectionString = connectionString;
     }
 
-    public bool Create(ContactDto contact)
+    public Contact Create(Contact contact)
     {
         using var connection = new SqliteConnection(connectionString);
         connection.Open();
 
         var command = connection.CreateCommand();
-        string query = "insert into contacts (name, phone, email) values (@name, @phone, @email);";
+        string query = @"insert into contacts (name, phone, email) values (@name, @phone, @email);
+            SELECT last_insert_rowid();";
         command.CommandText = query;
         command.Parameters.AddWithValue("@name", contact.Name);
         command.Parameters.AddWithValue("@phone", contact.PhoneNumber);
         command.Parameters.AddWithValue("@email", contact.Email);
 
         // Console.WriteLine("sql >> " + query);
-        return command.ExecuteNonQuery() > 0;
+        contact.Id = Convert.ToInt32(command.ExecuteScalar());
+        return contact;
     }
 
     public List<Contact> GetAll()
@@ -112,21 +114,5 @@ public class SQLiteStorage : IStorage
 
         // Console.WriteLine("sql >> " + query);
         return command.ExecuteNonQuery() > 0;
-    }
-
-    public long GetContactId(string name, string phoneNumber, string email)
-    {
-        using var connection = new SqliteConnection(connectionString);
-        connection.Open();
-
-        var command = connection.CreateCommand();
-        string query = @"select id from contacts
-            where name = @name and phone = @phone and email = @email;";
-        command.CommandText = query;
-        command.Parameters.AddWithValue("@name", name);
-        command.Parameters.AddWithValue("@phone", phoneNumber);
-        command.Parameters.AddWithValue("@email", email);
-
-        return (long)command.ExecuteScalar();
     }
 }

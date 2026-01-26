@@ -21,19 +21,19 @@ const App = () => {
   }
 
   const addContact = (contactName, contactPhoneNumber, contactEmail) => {
-    const newId = isEmptyArray(contacts) ? 1 : Math.max(...contacts.map(e => e.id)) + 1;
-
+    // const newId = isEmptyArray(contacts) ? 1 : Math.max(...contacts.map(e => e.id)) + 1;
     const item = {
-      id: newId,
+      // id: newId, // идентификаторы выдает БД, передавать его от клиента серверу не нужно
       name: contactName,
       phoneNumber: contactPhoneNumber,
       email: contactEmail
     };
     // POST-запрос
     const url = `${baseApiUrl}/contacts`;
-    axios.post(url, item); // второй параметр - тело запроса
-
-    setContacts([...contacts, item]);
+    // второй параметр - тело запроса
+    axios.post(url, item).then(
+      response => setContacts([...contacts, response.data])
+    ); // ожидание ответа от сервера
   }
 
   const deleteContact = (id) => {

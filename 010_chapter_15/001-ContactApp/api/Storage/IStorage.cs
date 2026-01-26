@@ -1,6 +1,6 @@
 public interface IStorage
 {
-    bool Create(ContactDto contact);
+    Contact Create(Contact contact);
 
     List<Contact> GetAll();
 
@@ -9,6 +9,4 @@ public interface IStorage
     bool Update(ContactDto contactDto, int id);
 
     bool Delete(int id);
-
-    long GetContactId(string name, string phoneNumber, string email);
 }
