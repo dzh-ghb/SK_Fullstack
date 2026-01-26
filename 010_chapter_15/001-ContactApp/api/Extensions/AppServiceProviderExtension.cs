@@ -2,7 +2,7 @@ public static class AppServiceProviderExtension
 {
     public static IServiceProvider AddCustomService(
         this IServiceProvider services,
-        IConfiguration configuration
+        IInitializer initializer
     )
     {
         using var scope = services.CreateScope(); // коллекция зарегистрированных сервисов
@@ -11,8 +11,7 @@ public static class AppServiceProviderExtension
         var dbStorage = storage as SQLiteStorage; // каст к конкретному типу хранилища
         if (dbStorage != null) // если зависимость БЫЛА зарегистрирована
         {
-            var connectionString = configuration.GetConnectionString("SQLiteConnectionString");
-            new FakerInitializer(connectionString).Initialize(); // инициализация БД
+            initializer.Initialize(); // инициализация БД
         }
         return services;
     }
