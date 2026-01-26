@@ -19,15 +19,24 @@ public class InMemoryStorage : IStorage
         }
     }
 
-    public bool Create(Contact contact)
+    public bool Create(ContactDto contactDto)
     {
+        int id = (int)GetContactId(contactDto.Name, contactDto.PhoneNumber, contactDto.Email);
         foreach (var item in Contacts)
         {
-            if (contact.Id == item.Id)
+            if (id == item.Id)
             {
                 return false;
             }
         }
+        Contact contact = new Contact
+        {
+            Id = Contacts.Count,
+            Name = contactDto.Name,
+            PhoneNumber = contactDto.PhoneNumber,
+            Email = contactDto.Email,
+
+        };
         Contacts.Add(contact);
         return true;
     }
@@ -87,5 +96,17 @@ public class InMemoryStorage : IStorage
             }
         }
         return false;
+    }
+
+    public long GetContactId(string name, string phoneNumber, string email)
+    {
+        for (int i = 0; i < Contacts.Count; i++)
+        {
+            if (Contacts[i].Name == name && Contacts[i].PhoneNumber == phoneNumber && Contacts[i].Email == email)
+            {
+                return i + 1;
+            }
+        }
+        return -1;
     }
 }

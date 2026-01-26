@@ -10,10 +10,11 @@ public class ContactManagementController : BaseController
     }
 
     [HttpPost("contacts")]
-    public IActionResult CreateContact([FromBody] Contact contact)
+    public IActionResult CreateContact([FromBody] ContactDto contact)
     {
         bool result = storage.Create(contact);
-        return result ? Created($"contacts/{contact.Id}", contact) : Conflict("Контакт с указанным ID уже существует");
+        long id = storage.GetContactId(contact.Name, contact.PhoneNumber, contact.Email);
+        return result ? Created($"contacts/{id}", contact) : Conflict("Контакт с указанным ID уже существует");
     }
 
     [HttpGet("contacts")] // маршрут тот же, но методы разные - разрешено

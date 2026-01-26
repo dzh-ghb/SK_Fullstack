@@ -40,3 +40,10 @@ set name = 'daa', phone = '123', email = 'daa@'
 where id = 19;
 
 select * from contacts where id = 19;
+
+select id
+from contacts
+where
+    name = 'dzh'
+    and phone = 'its'
+    and email = 'ndbt'

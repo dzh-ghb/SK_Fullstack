@@ -10,7 +10,7 @@ public class SQLiteStorage : IStorage
         this.connectionString = connectionString;
     }
 
-    public bool Create(Contact contact)
+    public bool Create(ContactDto contact)
     {
         using var connection = new SqliteConnection(connectionString);
         connection.Open();
@@ -112,5 +112,21 @@ public class SQLiteStorage : IStorage
 
         // Console.WriteLine("sql >> " + query);
         return command.ExecuteNonQuery() > 0;
+    }
+
+    public long GetContactId(string name, string phoneNumber, string email)
+    {
+        using var connection = new SqliteConnection(connectionString);
+        connection.Open();
+
+        var command = connection.CreateCommand();
+        string query = @"select id from contacts
+            where name = @name and phone = @phone and email = @email;";
+        command.CommandText = query;
+        command.Parameters.AddWithValue("@name", name);
+        command.Parameters.AddWithValue("@phone", phoneNumber);
+        command.Parameters.AddWithValue("@email", email);
+
+        return (long)command.ExecuteScalar();
     }
 }
