@@ -38,12 +38,12 @@ public class FakerInitializer : IInitializer
             .RuleFor(c => c.Email, f => f.Internet.Email());
 
             var contacts = faker.Generate(10);
+            command.CommandText = @"
+                    INSERT INTO contacts (name, phone, email)
+                    VALUES (@name, @phone, @email);";
 
             foreach (var contact in contacts)
             {
-                command.CommandText = @"
-                    INSERT INTO contacts (name, phone, email)
-                    VALUES (@name, @phone, @email);";
                 command.Parameters.Clear(); // очистка коллекции параметров на каждой итерации цикла
                 command.Parameters.AddWithValue("@name", contact.Name);
                 command.Parameters.AddWithValue("@phone", contact.PhoneNumber);

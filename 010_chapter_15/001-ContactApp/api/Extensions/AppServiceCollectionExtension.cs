@@ -19,6 +19,7 @@ public static class AppServiceCollectionExtension
            включает сервисы маршрутизации запросов контроллером,
            сервисы обработки HTTP-запросов и тд*/
         services.AddControllers();
+
         var connectionString = configuration.GetConnectionString("SQLiteConnectionString");
         // внедрение зависимости (паттерн, позволяющий создать единственный экземпляр класса)
         services.AddSingleton<IStorage>(new SQLiteStorage(connectionString)); // передача экземпляра
