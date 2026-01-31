@@ -19,8 +19,16 @@ public class InMemoryStorage : IStorage
         }
     }
 
-    public Contact Create(Contact contact)
+    public Contact Create(ContactDto contactDto)
     {
+        Contact contact = new Contact
+        {
+            Id = Contacts.Count + 1,
+            Name = contactDto.Name,
+            PhoneNumber = contactDto.PhoneNumber,
+            Email = contactDto.Email
+        };
+
         foreach (var item in Contacts)
         {
             if (contact.Id == item.Id)

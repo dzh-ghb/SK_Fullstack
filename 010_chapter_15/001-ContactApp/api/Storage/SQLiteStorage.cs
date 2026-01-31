@@ -10,7 +10,7 @@ public class SQLiteStorage : IStorage
         this.connectionString = connectionString;
     }
 
-    public Contact Create(Contact contact)
+    public Contact Create(ContactDto contactDto)
     {
         using var connection = new SqliteConnection(connectionString);
         connection.Open();
@@ -19,11 +19,16 @@ public class SQLiteStorage : IStorage
         string query = @"insert into contacts (name, phone, email) values (@name, @phone, @email);
             SELECT last_insert_rowid();";
         command.CommandText = query;
-        command.Parameters.AddWithValue("@name", contact.Name);
-        command.Parameters.AddWithValue("@phone", contact.PhoneNumber);
-        command.Parameters.AddWithValue("@email", contact.Email);
+        command.Parameters.AddWithValue("@name", contactDto.Name);
+        command.Parameters.AddWithValue("@phone", contactDto.PhoneNumber);
+        command.Parameters.AddWithValue("@email", contactDto.Email);
 
-        // Console.WriteLine("sql >> " + query);
+        Contact contact = new Contact
+        {
+            Name = contactDto.Name,
+            PhoneNumber = contactDto.PhoneNumber,
+            Email = contactDto.Email
+        };
         contact.Id = Convert.ToInt32(command.ExecuteScalar());
         return contact;
     }

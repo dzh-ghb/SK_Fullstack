@@ -1,6 +1,6 @@
 public interface IStorage
 {
-    Contact Create(Contact contact);
+    Contact Create(ContactDto contactDto);
 
     List<Contact> GetAll();
 
