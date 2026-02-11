@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 public static class AppServiceCollectionExtension
@@ -22,7 +23,10 @@ public static class AppServiceCollectionExtension
 
         var connectionString = configuration.GetConnectionString("SQLiteConnectionString");
         // внедрение зависимости (паттерн, позволяющий создать единственный экземпляр класса)
-        services.AddSingleton<IStorage>(new SQLiteStorage(connectionString)); // передача экземпляра
+        services.AddDbContext<SqliteDbContext>(opt => opt.UseSqlite(connectionString)); // регистрация зависимости
+
+        // services.AddSingleton<IStorage>(new SQLiteStorage(connectionString)); // передача экземпляра
+        services.AddScoped<IStorage, SqliteEfStorage>();
 
         // описание разрешений на доступ к ресурсу
         services.AddCors(opt =>
