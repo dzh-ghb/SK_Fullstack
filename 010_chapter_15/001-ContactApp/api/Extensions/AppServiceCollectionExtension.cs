@@ -27,6 +27,7 @@ public static class AppServiceCollectionExtension
 
         // services.AddSingleton<IStorage>(new SQLiteStorage(connectionString)); // передача экземпляра
         services.AddScoped<IStorage, SqliteEfStorage>();
+        services.AddScoped<IInitializer, SqliteEfFakerInitializer>();
 
         // описание разрешений на доступ к ресурсу
         services.AddCors(opt =>
