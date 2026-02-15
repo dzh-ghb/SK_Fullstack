@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 
 public class ContactManagementController : BaseController
 {
-    private readonly IStorage storage; // readonly - значение присваивается только один раз
+    private readonly IPaginationStorage storage; // readonly - значение присваивается только один раз
 
-    public ContactManagementController(IStorage storage)
+    public ContactManagementController(IPaginationStorage storage)
     {
         this.storage = storage;
     }
@@ -22,20 +22,37 @@ public class ContactManagementController : BaseController
         return Ok(storage.GetAll());
     }
 
+    // реализация по курсу
     [HttpGet("contacts/{id}")]
-    public ActionResult<Contact> GetContactById(int id)
+    public IActionResult GetContactById(int id)
     {
-        var (result, contact) = storage.GetContact(id);
-        if (result)
+        var contact = storage.GetContactById(id);
+        if (id < 0)
         {
-            return Ok(contact);
+            return BadRequest("Некорректный ID");
         }
-        else if (id >= 0)
+        else if (contact == null)
         {
             return NotFound("Контакт с указанным ID не найден");
         }
-        return BadRequest("Некорректный ID");
+        return Ok(contact);
     }
+
+    // моя реализация
+    // [HttpGet("contacts/{id}")]
+    // public ActionResult<Contact> GetContactById(int id)
+    // {
+    //     var (result, contact) = storage.GetContact(id);
+    //     if (result)
+    //     {
+    //         return Ok(contact);
+    //     }
+    //     else if (id >= 0)
+    //     {
+    //         return NotFound("Контакт с указанным ID не найден");
+    //     }
+    //     return BadRequest("Некорректный ID");
+    // }
 
     [HttpPut("contacts/{id}")]
     public IActionResult UpdateContact([FromBody] ContactDto contactDto, int id)

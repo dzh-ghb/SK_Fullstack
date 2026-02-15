@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 public class SqliteEfStorage : IStorage
 {
     // контекст для взаимодействия с БД ("контекст == БД")
-    private readonly SqliteDbContext context;
+    protected readonly SqliteDbContext context;
 
     public SqliteEfStorage(SqliteDbContext context)
     {

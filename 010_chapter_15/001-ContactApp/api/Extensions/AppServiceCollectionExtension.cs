@@ -26,7 +26,8 @@ public static class AppServiceCollectionExtension
         services.AddDbContext<SqliteDbContext>(opt => opt.UseSqlite(connectionString)); // регистрация зависимости
 
         // services.AddSingleton<IStorage>(new SQLiteStorage(connectionString)); // передача экземпляра
-        services.AddScoped<IStorage, SqliteEfStorage>();
+        // services.AddScoped<IStorage, SqliteEfStorage>();
+        services.AddScoped<IPaginationStorage, SqlitePaginationEfStorage>();
         services.AddScoped<IInitializer, SqliteEfFakerInitializer>();
 
         // описание разрешений на доступ к ресурсу
