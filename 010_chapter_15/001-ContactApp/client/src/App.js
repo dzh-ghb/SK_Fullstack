@@ -41,9 +41,11 @@ const App = () => {
   const deleteContact = (id) => {
     // DELETE-запрос
     const url = `${baseApiUrl}/contacts/${id}`;
-    axios.delete(url);
-
-    setContacts(contacts.filter(item => item.id !== id));
+    axios.delete(url).then(
+      setContacts(contacts.filter(item => item.id !== id))
+    ).catch(() =>
+      console.log("Ошибка удаления")
+    );
   }
 
   return (
@@ -63,7 +65,7 @@ const App = () => {
             </div>
           </div>
         } />
-        <Route path="contact/:id" element={<ContactDetails />} />
+        <Route path="contact/:id" element={<ContactDetails deleteContact={deleteContact} />} />
       </Routes>
     </div>
   );
