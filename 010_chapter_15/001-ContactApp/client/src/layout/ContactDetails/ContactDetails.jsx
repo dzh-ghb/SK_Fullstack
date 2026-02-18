@@ -18,7 +18,19 @@ const ContactDetails = (props) => {
         ).catch( // переброс на главную страницу при ошибке
             () => navigate("/")
         )
-    }, [id, navigate]); // второй параметр - обновляемое состояние
+    }, [id, navigate]); // [id, navigate] - обновляемое состояние
+
+    // мой вариант функции обновления
+    const handleUpdate = () => {
+        const url = `${baseApiUrl}/contacts/${id}`;
+        if (window.confirm("Обновить данные?")) {
+            axios.put(url, contact).then(
+                () => navigate("/")
+            ).catch(() =>
+                console.log("Ошибка обновления")
+            );
+        }
+    }
 
     // мой вариант функции удаления
     const handleRemove = () => {
@@ -48,8 +60,13 @@ const ContactDetails = (props) => {
                 <input
                     className="form-control"
                     type="text"
-                    value={contact.name}
-                    onChange={(e) => { }}
+                    defaultValue={contact.name}
+                    onChange={e =>
+                        setContact(prev => ({  // prev - гарантированно актуальное состояние
+                            ...prev, // spread-оператор (берет все старые значения и копирует в новый объект)
+                            name: e.target.value // перезапись конкретного поля, остальные данные останутся без изменений
+                        }))
+                    }
                 />
             </div>
             <div className="mb-3">
@@ -57,8 +74,13 @@ const ContactDetails = (props) => {
                 <input
                     className="form-control"
                     type="tel"
-                    value={contact.phoneNumber}
-                    onChange={(e) => { }}
+                    defaultValue={contact.phoneNumber}
+                    onChange={e =>
+                        setContact(prev => ({
+                            ...prev,
+                            phoneNumber: e.target.value
+                        }))
+                    }
                 />
             </div>
             <div className="mb-3">
@@ -66,13 +88,18 @@ const ContactDetails = (props) => {
                 <input
                     className="form-control"
                     type="email"
-                    value={contact.email}
-                    onChange={(e) => { }}
+                    defaultValue={contact.email}
+                    onChange={e =>
+                        setContact(prev => ({
+                            ...prev,
+                            email: e.target.value
+                        }))
+                    }
                 />
             </div>
             <button
                 className="btn btn-primary me-2"
-                onClick={(e) => { }}>
+                onClick={(e) => { handleUpdate(); }}>
                 Обновить
             </button>
             <button

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import TableContact from "./layout/TableContact/TableContact";
 import FormContact from "./layout/FormContact/FormContact";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import ContactDetails from "./layout/ContactDetails/ContactDetails";
 
 const baseApiUrl = process.env.REACT_APP_API_URL;
@@ -10,27 +10,26 @@ const baseApiUrl = process.env.REACT_APP_API_URL;
 const App = () => {
   const [contacts, setContacts] = useState([]);
 
-  // GET-запрос
-  const url = `${baseApiUrl}/contacts`;
-  useEffect(() => {
+  const location = useLocation(); // объект текущего маршрута, меняется при navigate
+
+  const getContacts = () => {
+    const url = `${baseApiUrl}/contacts`;
     axios.get(url).then(
       res => setContacts(res.data)
     );
-  }, []);
-
-  const isEmptyArray = (array) => {
-    return Array.isArray(array) && array.length === 0;
   }
 
+  // выполняется после рендера, повторяется при изменении зависимости (location)
+  useEffect(() => {
+    getContacts();
+  }, [location]);
+
   const addContact = (contactName, contactPhoneNumber, contactEmail) => {
-    // const newId = isEmptyArray(contacts) ? 1 : Math.max(...contacts.map(e => e.id)) + 1;
     const item = {
-      // id: newId, // идентификаторы выдает БД, передавать его от клиента серверу не нужно
       name: contactName,
       phoneNumber: contactPhoneNumber,
       email: contactEmail
     };
-    // POST-запрос
     const url = `${baseApiUrl}/contacts`;
     // второй параметр - тело запроса
     axios.post(url, item).then(
@@ -39,10 +38,12 @@ const App = () => {
   }
 
   const deleteContact = (id) => {
-    // DELETE-запрос
     const url = `${baseApiUrl}/contacts/${id}`;
-    axios.delete(url).then(
-      setContacts(contacts.filter(item => item.id !== id))
+    axios.delete(url).then(prev => {
+      setContacts(prev =>
+        prev.filter(item => item.id !== id)
+      );
+    }
     ).catch(() =>
       console.log("Ошибка удаления")
     );
