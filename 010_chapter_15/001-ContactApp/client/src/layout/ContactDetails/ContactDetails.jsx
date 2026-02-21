@@ -4,7 +4,7 @@ import axios from "axios";
 
 const baseApiUrl = process.env.REACT_APP_API_URL;
 
-const ContactDetails = (props) => {
+const ContactDetails = (/*props*/) => {
     const [contact, setContact] = useState({ name: "", phoneNumber: "", email: "" }); // хук хранения данных о контакте
     const { id } = useParams(); // хук получения идентификатора
     const navigate = useNavigate(); // хук для возврата на главную страницу
@@ -16,39 +16,40 @@ const ContactDetails = (props) => {
         axios.get(url).then(
             response => setContact(response.data)
         ).catch( // переброс на главную страницу при ошибке
+            // navigate("/") // если вызывать функцию, то на страницу контакта не перейдет (сразу будет переброс на базу)
             () => navigate("/")
         )
     }, [id, navigate]); // [id, navigate] - обновляемое состояние
 
-    // мой вариант функции обновления
+    // мой вариант функции обновления (совпадает с вариантом из курса, но с одним нюансом)
     const handleUpdate = () => {
         const url = `${baseApiUrl}/contacts/${id}`;
         if (window.confirm("Обновить данные?")) {
             axios.put(url, contact).then(
-                () => navigate("/")
+                // navigate("/") // в курсе так, функция ВЫЗЫВАЕТСЯ СРАЗУ (без ожидания ответа)
+                () => navigate("/") // ПЕРЕДАЧА колбэк-функции (выполнение после получения ответа)
             ).catch(() =>
                 console.log("Ошибка обновления")
             );
         }
     }
 
-    // мой вариант функции удаления
     const handleRemove = () => {
+        const url = `${baseApiUrl}/contacts/${id}`;
         if (window.confirm("Удалить контакт?")) {
-            props.deleteContact(contact.id);
-            navigate("/");
+            axios.delete(url).then(
+                () => navigate("/")
+            ).catch(() =>
+                console.log("Ошибка удаления")
+            );
         }
     }
 
-    // вариант функции удаления из курса
+    // вариант с передачей свойств
     // const handleRemove = () => {
-    //     const url = `${baseApiUrl}/contacts/${id}`;
     //     if (window.confirm("Удалить контакт?")) {
-    //         axios.delete(url).then(
-    //             navigate("/")
-    //         ).catch(() =>
-    //             console.log("Ошибка удаления")
-    //         );
+    //         props.deleteContact(contact.id);
+    //         navigate("/");
     //     }
     // }
 
@@ -60,7 +61,9 @@ const ContactDetails = (props) => {
                 <input
                     className="form-control"
                     type="text"
+                    // при использовании value позволяет обновлять данные на пустое значение
                     defaultValue={contact.name}
+                    // мой вариант
                     onChange={e =>
                         setContact(prev => ({  // prev - гарантированно актуальное состояние
                             ...prev, // spread-оператор (берет все старые значения и копирует в новый объект)
@@ -75,12 +78,8 @@ const ContactDetails = (props) => {
                     className="form-control"
                     type="tel"
                     defaultValue={contact.phoneNumber}
-                    onChange={e =>
-                        setContact(prev => ({
-                            ...prev,
-                            phoneNumber: e.target.value
-                        }))
-                    }
+                    /* вариант из курса */
+                    onChange={e => setContact({ ...contact, phoneNumber: e.target.value })}
                 />
             </div>
             <div className="mb-3">
@@ -89,27 +88,23 @@ const ContactDetails = (props) => {
                     className="form-control"
                     type="email"
                     defaultValue={contact.email}
-                    onChange={e =>
-                        setContact(prev => ({
-                            ...prev,
-                            email: e.target.value
-                        }))
-                    }
+                    onChange={e => setContact({ ...contact, email: e.target.value })}
                 />
             </div>
+
             <button
                 className="btn btn-primary me-2"
-                onClick={(e) => { handleUpdate(); }}>
+                onClick={() => { handleUpdate(); }}>
                 Обновить
             </button>
             <button
                 className="btn btn-danger"
-                onClick={(e) => { handleRemove(); }}>
+                onClick={() => { handleRemove(); }}>
                 Удалить
             </button>
             <button
                 className="btn btn-secondary ms-2"
-                onClick={(e) => { navigate("/"); }}>
+                onClick={() => { navigate("/"); }}>
                 Назад
             </button>
         </div>);

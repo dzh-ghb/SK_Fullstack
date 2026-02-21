@@ -37,17 +37,18 @@ const App = () => {
     ); // ожидание ответа от сервера
   }
 
-  const deleteContact = (id) => {
-    const url = `${baseApiUrl}/contacts/${id}`;
-    axios.delete(url).then(prev => {
-      setContacts(prev =>
-        prev.filter(item => item.id !== id)
-      );
-    }
-    ).catch(() =>
-      console.log("Ошибка удаления")
-    );
-  }
+  // использовалось при удалении контакта по двойному клику по записи
+  // const deleteContact = (id) => {
+  //   const url = `${baseApiUrl}/contacts/${id}`;
+  //   axios.delete(url).then(prev => {
+  //     setContacts(prev =>
+  //       prev.filter(item => item.id !== id)
+  //     );
+  //   }
+  //   ).catch(() =>
+  //     console.log("Ошибка удаления")
+  //   );
+  // }
 
   return (
     <div className="container mt-5">
@@ -61,12 +62,13 @@ const App = () => {
             <div className="card-body">
               <TableContact
                 contacts={contacts}
-                deleteContact={deleteContact} />
+              // deleteContact={deleteContact}
+              />
               <FormContact addContact={addContact} />
             </div>
           </div>
         } />
-        <Route path="contact/:id" element={<ContactDetails deleteContact={deleteContact} />} />
+        <Route path="contact/:id" element={<ContactDetails /*deleteContact={deleteContact}*/ />} />
       </Routes>
     </div>
   );
