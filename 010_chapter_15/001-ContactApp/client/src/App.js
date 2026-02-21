@@ -19,10 +19,10 @@ const App = () => {
     );
   }
 
-  // выполняется после рендера, повторяется при изменении зависимости (location)
+  // выполняется после рендера, повторяется при изменении зависимости/пути (location)
   useEffect(() => {
     getContacts();
-  }, [location]);
+  }, [location.pathname]); // с pathname сработает только при изменении пути (без - сработает и при изменении параметров запроса/хэша и тд)
 
   const addContact = (contactName, contactPhoneNumber, contactEmail) => {
     const item = {
