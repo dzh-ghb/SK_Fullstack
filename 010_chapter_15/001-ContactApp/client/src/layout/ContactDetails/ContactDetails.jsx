@@ -62,7 +62,7 @@ const ContactDetails = (/*props*/) => {
                     className="form-control"
                     type="text"
                     // при использовании value позволяет обновлять данные на пустое значение
-                    defaultValue={contact.name}
+                    value={contact.name}
                     // мой вариант
                     onChange={e =>
                         setContact(prev => ({  // prev - гарантированно актуальное состояние
@@ -77,7 +77,7 @@ const ContactDetails = (/*props*/) => {
                 <input
                     className="form-control"
                     type="tel"
-                    defaultValue={contact.phoneNumber}
+                    value={contact.phoneNumber}
                     /* вариант из курса */
                     onChange={e => setContact({ ...contact, phoneNumber: e.target.value })}
                 />
@@ -87,7 +87,7 @@ const ContactDetails = (/*props*/) => {
                 <input
                     className="form-control"
                     type="email"
-                    defaultValue={contact.email}
+                    value={contact.email}
                     onChange={e => setContact({ ...contact, email: e.target.value })}
                 />
             </div>
