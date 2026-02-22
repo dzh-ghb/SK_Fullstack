@@ -4,25 +4,40 @@ import TableContact from "./layout/TableContact/TableContact";
 import FormContact from "./layout/FormContact/FormContact";
 import { Route, Routes, useLocation } from "react-router-dom";
 import ContactDetails from "./layout/ContactDetails/ContactDetails";
+import Pagination from "./layout/Pagination/Pagination";
 
 const baseApiUrl = process.env.REACT_APP_API_URL;
 
 const App = () => {
   const [contacts, setContacts] = useState([]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [pageSize] = useState(10);
+
   const location = useLocation(); // объект текущего маршрута, меняется при navigate
 
+  // функция переключения (обновления) страниц
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber); // для примитивов useState срабатывает только при смене значения
+  }
+
   const getContacts = () => {
-    const url = `${baseApiUrl}/contacts`;
+    // /page?pageNumber=1&pageSize=5
+    const url = `${baseApiUrl}/contacts/page?pageNumber=${currentPage}&pageSize=${pageSize}`;
     axios.get(url).then(
-      res => setContacts(res.data)
+      res => {
+        setContacts(res.data.contacts);
+        setTotalPages(Math.ceil(res.data.totalCount / pageSize));
+      }
     );
   }
 
   // выполняется после рендера, повторяется при изменении зависимости/пути (location)
   useEffect(() => {
     getContacts();
-  }, [location.pathname]); // с pathname сработает только при изменении пути (без - сработает и при изменении параметров запроса/хэша и тд)
+  }, [currentPage, pageSize, location.pathname]); // отслеживание изменения currentPage, pageSize;
+  // location с pathname сработает только при изменении пути (без - сработает и при изменении параметров запроса/хэша и тд)
 
   const addContact = (contactName, contactPhoneNumber, contactEmail) => {
     const item = {
@@ -63,6 +78,11 @@ const App = () => {
               <TableContact
                 contacts={contacts}
               // deleteContact={deleteContact}
+              />
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
               />
               <FormContact addContact={addContact} />
             </div>
