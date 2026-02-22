@@ -54,6 +54,24 @@ public class ContactManagementController : BaseController
     //     return BadRequest("Некорректный ID");
     // }
 
+    // endpoint для порционного получения данных
+    [HttpGet("contacts/page")]
+    public IActionResult GetContactsPart(int pageNumber = 1, int pageSize = 5)
+    {
+        var (partOfContacts, totalCount) = storage.GetContactsPart(pageNumber, pageSize);
+
+        var response = new
+        {
+            Contacts = partOfContacts, // список части контактов
+            TotalCount = totalCount, // доп. инфа
+            CurrentPage = pageNumber,
+            PageSize = pageSize
+        };
+
+        return Ok(response);
+    }
+
+
     [HttpPut("contacts/{id}")]
     public IActionResult UpdateContact([FromBody] ContactDto contactDto, int id)
     {
