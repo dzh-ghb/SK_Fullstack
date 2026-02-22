@@ -13,7 +13,7 @@ const App = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const [pageSize] = useState(10);
+  const [pageSize] = useState(1);
 
   const location = useLocation(); // объект текущего маршрута, меняется при navigate
 
@@ -45,11 +45,11 @@ const App = () => {
       phoneNumber: contactPhoneNumber,
       email: contactEmail
     };
+
     const url = `${baseApiUrl}/contacts`;
     // второй параметр - тело запроса
-    axios.post(url, item).then(
-      response => setContacts([...contacts, response.data])
-    ); // ожидание ответа от сервера
+    axios.post(url, item); // добавление данных
+    getContacts(); // повторный GET-запрос для обновления списка контакта и счетчика количества страниц
   }
 
   // использовалось при удалении контакта по двойному клику по записи
