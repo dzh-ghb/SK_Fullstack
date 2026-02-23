@@ -13,7 +13,7 @@ const App = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const [pageSize] = useState(1);
+  const [pageSize] = useState(3);
 
   const location = useLocation(); // объект текущего маршрута, меняется при navigate
 

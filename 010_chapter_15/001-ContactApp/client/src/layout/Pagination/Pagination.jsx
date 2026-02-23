@@ -1,33 +1,34 @@
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-    const pageNumber = [];
+    const pageNumbers = []; // массив номеров отображаемых страниц
     let startPage, endPage;
-    const countPagination = 8;
+    const countPagination = 8; // максимум отображаемых страниц
 
-    if (totalPages <= countPagination) { // если фактическое количество страниц меньше, чем хотим отображать
+    // логика вычисления первой и последней отображаемых страниц
+    if (totalPages <= countPagination) { // если фактическое количество страниц меньше, чем допустимо отображать
         startPage = 1;
         endPage = totalPages;
     } else {
-        if (currentPage <= countPagination - 4) { // выбрана 1-я страница и отображаются страницы после нее
+        if (currentPage <= countPagination - 4) { // выбрана одна из первых 4-х страниц - отображение первых 8-и страниц
             startPage = 1;
             endPage = countPagination;
-        } else if (currentPage + 4 >= totalPages) { // выбрана последняя страница
+        } else if (currentPage + 3 >= totalPages) { // выбрана одна из последних 4-х страниц - отображение последних 8-и страниц
             startPage = totalPages - (countPagination - 1);
             endPage = totalPages;
-        } else { // остальные случаи
+        } else { // остальные случаи (середина) - отображение 9-и страниц (текущая + по 4-е слева и справа)
             startPage = currentPage - (Math.floor(countPagination / 2));
             endPage = currentPage + (Math.floor(countPagination / 2));
         }
     }
 
-    // сохранение перечня страниц в массив в случае, если startPage != 1 и endPage != last_page
+    // сохранение перечня отображаемых страниц в массив
     for (let i = startPage; i <= endPage; i++) {
-        pageNumber.push(i);
+        pageNumbers.push(i);
     }
 
     return (
         <nav>
             <ul className="pagination">
-                {/* кнопка перехода к предыдущей странице - недоступна, если текущая страница "1" */}
+                {/* кнопка перехода к предыдущей странице - недоступна, если текущая страница первая */}
                 <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
                     <button
                         className="page-link"
@@ -37,18 +38,18 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                     </button>
                 </li>
 
-                {/* если текущая страница первая - отображение кнопки "1"*/}
+                {/* если текущая страница не первая */}
                 {startPage > 1 && (
                     <>
+                        {/* отображение кнопки первой страницы */}
                         <li className="page-item">
                             <button
                                 className="page-link"
-                                onClick={() => { onPageChange(1); }}
-                            >
+                                onClick={() => { onPageChange(1); }}>
                                 1
                             </button>
                         </li>
-                        {/* если текущая страница 3 и далее - отображение "..."*/}
+                        {/* если основное окно страниц начинается с третьей - отображение "..." */}
                         {startPage > 2 &&
                             <li
                                 className="page-item disabled">
@@ -58,12 +59,12 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                     </>
                 )}
 
-                {/* если текущая страница ~ в середине;
-                перебор массива страниц и выставление кнопки каждому значению,
-                кнопка текущей страница неактивна, остальные случаи - добавление кнопок перехода на страницу по индексу*/}
-                {pageNumber.map(pageIndex => (
+                {/* перебор массива страниц и отображение кнопки каждого значения;
+                кнопка текущей страницы неактивна, остальные случаи - кнопки перехода на страницу по индексу*/}
+                {pageNumbers.map(pageIndex => (
                     <li key={pageIndex}
                         className={`page-item ${currentPage === pageIndex ? "disabled" : ""}`}>
+                        {/* onPageChange(pageIndex) в App.js вызывает setCurrentPage и запускает ререндер */}
                         <button
                             className="page-link"
                             onClick={() => { onPageChange(pageIndex); }}>
@@ -72,16 +73,16 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                     </li>
                 ))}
 
-                {/* если текущая страница последняя - отображение кнопки с номером последней страницы*/}
+                {/* если текущая страница не последняя*/}
                 {endPage < totalPages && (
                     <>
-                        {/* если текущая страница 3 и далее с конца - отображение "..."*/}
+                        {/* если основное окно страниц заканчивается третьей с конца - отображение "..." */}
                         {endPage < totalPages - 1 &&
                             <li className="page-item disabled">
                                 <span className="page-link">...</span>
                             </li>}
+                        {/* отображение кнопки последней страницы */}
                         <li className="page-item">
-                            {/* показ кнопки последней страницы */}
                             <button
                                 className="page-link"
                                 onClick={() => { onPageChange(totalPages); }}>
@@ -89,8 +90,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                             </button>
                         </li>
                     </>
-                )
-                }
+                )}
 
                 {/* кнопка перехода к следующей странице - недоступна, если текущая страница последняя*/}
                 <li className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}>
