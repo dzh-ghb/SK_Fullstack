@@ -49,7 +49,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                                 1
                             </button>
                         </li>
-                        {/* если основное окно страниц начинается с третьей - отображение "..." */}
+                        {/* если основное окно страниц начинается с третьей или далее - отображение "..." */}
                         {startPage > 2 &&
                             <li
                                 className="page-item disabled">
@@ -73,10 +73,10 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                     </li>
                 ))}
 
-                {/* если текущая страница не последняя*/}
+                {/* если текущая страница не последняя */}
                 {endPage < totalPages && (
                     <>
-                        {/* если основное окно страниц заканчивается третьей с конца - отображение "..." */}
+                        {/* если основное окно страниц заканчивается третьей с конца или ранее - отображение "..." */}
                         {endPage < totalPages - 1 &&
                             <li className="page-item disabled">
                                 <span className="page-link">...</span>

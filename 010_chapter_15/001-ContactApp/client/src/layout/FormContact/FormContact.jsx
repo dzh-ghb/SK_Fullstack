@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const FormContact = (props) => {
     const [contactName, setContactName] = useState("");
     const [contactPhoneNumber, setContactPhoneNumber] = useState("");
     const [contactEmail, setContactEmail] = useState("");
+
+    const navigate = useNavigate();
 
     const submit = () => {
         if (contactName.trim() === "" || contactPhoneNumber.trim() === "" || contactEmail.trim() === "") return;
@@ -42,6 +45,11 @@ const FormContact = (props) => {
                 <button className="btn btn-primary"
                     onClick={() => { submit() }}>
                     Добавить контакт
+                </button>
+                <button
+                    className="btn btn-secondary ms-2"
+                    onClick={() => { navigate("/"); }}>
+                    Назад
                 </button>
             </div>
         </div >

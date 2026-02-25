@@ -9,7 +9,9 @@ const TableContact = (props) => {
                     <th>#</th>
                     <th>Имя контакта</th>
                     <th>Номер телефона</th>
-                    <th>E-mail</th>
+                    {/* скрытие поля email на небольших экранах */}
+                    <th className="d-none d-md-table-cell">E-mail</th>
+                    <th></th> {/* пустое поля над столбцом с кнопками - для корректного отображения */}
                 </tr>
             </thead>
             <tbody>

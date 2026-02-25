@@ -8,7 +8,7 @@ const RowTableContact = (props) => {
             <td>{props.id}</td>
             <td>{props.name}</td>
             <td>{props.phoneNumber}</td>
-            <td>{props.email}</td>
+            <td className="d-none d-md-table-cell">{props.email}</td>
             <td>
                 <Link
                     to={`/contact/${props.id}`}

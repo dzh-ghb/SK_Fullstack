@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { Route, Routes, useLocation, Link } from "react-router-dom";
 import TableContact from "./layout/TableContact/TableContact";
-import FormContact from "./layout/FormContact/FormContact";
-import { Route, Routes, useLocation } from "react-router-dom";
 import ContactDetails from "./layout/ContactDetails/ContactDetails";
 import Pagination from "./layout/Pagination/Pagination";
+import AppendContact from "./layout/FormContact/AppendContact";
 
 const baseApiUrl = process.env.REACT_APP_API_URL;
 
@@ -14,6 +14,13 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [pageSize] = useState(3);
+
+  // СПРАВОЧНО: вариант решения проблемы "не обновления" данных на главной форме после обновления на странице контакта;
+  // у меня проблемы нет, так как в .then при выполнении PUT-запроса я передаю колбэк, а не вызываю функцию перехода назад
+  // const [updateTrigger, setUpdateTrigger] = useState(0);
+  // const handleUpdateTrigger = () => {
+  //   setUpdateTrigger(updateTrigger + 1); // далее - передать пропс в ContactDetails и вызвать в .then функции handleUpdate
+  // }
 
   const location = useLocation(); // объект текущего маршрута, меняется при navigate
 
@@ -39,20 +46,20 @@ const App = () => {
   }, [currentPage, pageSize, location.pathname]); // отслеживание изменения currentPage, pageSize;
   // location с pathname сработает только при изменении пути (без - сработает и при изменении параметров запроса/хэша и тд)
 
-  const addContact = (contactName, contactPhoneNumber, contactEmail) => {
-    const item = {
-      name: contactName,
-      phoneNumber: contactPhoneNumber,
-      email: contactEmail
-    };
+  // СПРАВОЧНО: использовалось при добавлении контакта на главной странице
+  // const addContact = (contactName, contactPhoneNumber, contactEmail) => {
+  //   const item = {
+  //     name: contactName,
+  //     phoneNumber: contactPhoneNumber,
+  //     email: contactEmail
+  //   };
+  //   const url = `${baseApiUrl}/contacts`;
+  //   // второй параметр - тело запроса
+  //   axios.post(url, item); // добавление данных
+  //   getContacts(); // повторный GET-запрос для обновления списка контакта и счетчика количества страниц
+  // }
 
-    const url = `${baseApiUrl}/contacts`;
-    // второй параметр - тело запроса
-    axios.post(url, item); // добавление данных
-    getContacts(); // повторный GET-запрос для обновления списка контакта и счетчика количества страниц
-  }
-
-  // использовалось при удалении контакта по двойному клику по записи
+  // СПРАВОЧНО: использовалось при удалении контакта по двойному клику по записи
   // const deleteContact = (id) => {
   //   const url = `${baseApiUrl}/contacts/${id}`;
   //   axios.delete(url).then(prev => {
@@ -84,11 +91,16 @@ const App = () => {
                 totalPages={totalPages}
                 onPageChange={handlePageChange}
               />
-              <FormContact addContact={addContact} />
+              {/* <FormContact addContact={addContact} /> */}
+              <Link to="/append"
+                className="btn btn-success mt-3">
+                Добавить контакт
+              </Link>
             </div>
           </div>
         } />
         <Route path="contact/:id" element={<ContactDetails /*deleteContact={deleteContact}*/ />} />
+        <Route path="append" element={<AppendContact baseApiUrl={baseApiUrl} />} />
       </Routes>
     </div>
   );
