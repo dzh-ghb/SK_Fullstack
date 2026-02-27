@@ -27,7 +27,8 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 
     return (
         <nav>
-            <ul className="pagination">
+            {/* в Bootstrap по умолчанию flex и nowrap - не сжимается */}
+            <ul className="pagination flex-wrap">
                 {/* кнопка перехода к предыдущей странице - недоступна, если текущая страница первая */}
                 <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
                     <button
