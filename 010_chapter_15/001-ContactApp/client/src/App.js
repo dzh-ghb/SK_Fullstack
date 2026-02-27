@@ -99,6 +99,7 @@ const App = () => {
             </div>
           </div>
         } />
+        {/* :id - параметр маршрута, useParams() возвращает только параметры */}
         <Route path="contact/:id" element={<ContactDetails /*deleteContact={deleteContact}*/ />} />
         <Route path="append" element={<AppendContact baseApiUrl={baseApiUrl} />} />
       </Routes>
