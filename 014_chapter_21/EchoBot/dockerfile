@@ -1,0 +1,23 @@
+# какое окружение нужно поднимать (здесь - SDK для сборки проекта)
+from mcr.microsoft.com/dotnet/sdk:8.0 as build-env
+# рабочая директория внутри контейнера
+workdir /app
+
+# копирование файлов проекта с хоста в контейнер
+copy *.csproj ./
+# восстановление всех зависимостей проекта
+run dotnet restore
+# копирование всех файлов проекта
+copy . ./
+
+# сборка готового к запуску набора файлов
+run dotnet publish -c Release -o out
+
+# среда выполнения
+from mcr.microsoft.com/dotnet/runtime:8.0
+workdir /app
+# копирование файлов сборки из build-env в текущую сборку
+copy --from=build-env /app/out .
+
+# команда выполняемая при запуске контейнера
+entrypoint ["dotnet", "EchoBot.dll"]
