@@ -1,11 +1,20 @@
 ﻿using Telegram.Bot;
 
-if (args.Length != 1)
+string token = Environment.GetEnvironmentVariable("TG_BOT_TOKEN");
+
+if (string.IsNullOrEmpty(token))
 {
-    Console.WriteLine("Specify the token in the argument");
+    Console.WriteLine("Specify the token in TG_BOT_TOKEN environment variable");
     return;
 }
-string token = args[0];
+
+// СПРАВОЧНО: при передаче токена через аргументы он будет светиться в истории процессов - лучше через переменные окружения
+// if (args.Length != 1)
+// {
+//     Console.WriteLine("Specify the token in the argument");
+//     return;
+// }
+// string token = args[0];
 
 var client = new TelegramBotClient(token);
 
