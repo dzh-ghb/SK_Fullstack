@@ -9,12 +9,20 @@ var app = builder.Build();
 var connectionString = builder.Configuration.GetConnectionString("SQLiteConnectionString");
 app.Services.AddCustomService();
 
-// Настраиваем доступ к Swagger
+// доступ к Swagger
 app.UseSwagger();
 app.UseSwaggerUI();
 
+// кастомный middleware (конвейер) определения порядка обработки запроса
+app.useConfigMiddleware();
+// middleware для обслуживания файлов по умолчанию (index.html и тд)
 app.UseDefaultFiles();
+// middleware для обслуживания CSS, JS, изображения и тд для возможности возвращаться
+// статические файлы клиенту (статические, т.к. клиент собран и файлы там неизменны)
 app.UseStaticFiles();
+// middleware настройки маршрутизации приложения,
+// обработка запросов по маршрутам НЕ из базовых контроллеров (BaseController/ContactManagementController)
+app.MapFallbackToController("Index", "Fallback");
 
 app.MapControllers(); // настройка маршрутизации запросов так,
 // чтобы все HTTP-запросы перенаправлялись на контроллеры для обработки
