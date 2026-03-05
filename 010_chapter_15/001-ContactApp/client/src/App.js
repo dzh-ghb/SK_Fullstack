@@ -6,7 +6,7 @@ import ContactDetails from "./layout/ContactDetails/ContactDetails";
 import Pagination from "./layout/Pagination/Pagination";
 import AppendContact from "./layout/FormContact/AppendContact";
 
-const baseApiUrl = process.env.REACT_APP_API_URL;
+const baseApiUrl = window.config.apiUrl;
 
 const App = () => {
   const [contacts, setContacts] = useState([]);

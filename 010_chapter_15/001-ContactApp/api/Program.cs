@@ -13,6 +13,9 @@ app.Services.AddCustomService();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.MapControllers(); // настройка маршрутизации запросов так,
 // чтобы все HTTP-запросы перенаправлялись на контроллеры для обработки
 app.UseCors("CorsPolicy"); // применение политики
