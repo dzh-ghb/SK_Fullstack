@@ -8,7 +8,7 @@ public class ConfigMiddleware
         this.next = next;
     }
 
-    private async Task InvokeAsync(HttpContext context)
+    public async Task InvokeAsync(HttpContext context)
     {
         // если запрос на /config.js
         if (context.Request.Path == "/config.js")
@@ -23,7 +23,7 @@ public class ConfigMiddleware
 
             // указание url значением в поле конфига
             var config = $@"window.config = {{
-                apiUrl: '{apiUrl}
+                apiUrl: '{apiUrl}'
             }}";
 
             // указание на JS-файл

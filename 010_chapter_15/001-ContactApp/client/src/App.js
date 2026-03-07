@@ -13,7 +13,7 @@ const App = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const [pageSize] = useState(3);
+  const [pageSize] = useState(10);
 
   // СПРАВОЧНО: вариант решения проблемы "не обновления" данных на главной форме после обновления на странице контакта;
   // у меня проблемы нет, так как в .then при выполнении PUT-запроса я передаю колбэк, а не вызываю функцию перехода назад
